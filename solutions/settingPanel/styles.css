@@ -1,0 +1,143 @@
+/* element selectors */
+body {
+    background-color: darkgrey;
+    color: white;
+    font-family: 'Rubik';
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    background-color: #1A1B1F;
+    color: white;
+    padding: 0;
+}
+
+hr {
+    background-color: #454545;
+    height: 1px;
+    border: none;
+}
+
+/* id selectors */
+#all-settings-btn {
+    color: #5986CB;
+    font-weight: 400;
+    font-size: 16px;
+    border: 1px #454545 solid;
+    border-radius: 10px;
+    padding: 10px 100px;
+    margin: 0 40px 25px 40px;
+}
+
+#panel-title-container {
+    display: flex;
+    align-items: center;
+}
+
+#panel-title {
+    font-weight: 400;
+    font-size: 32px;
+    flex-grow: 1;
+    margin: 0;
+}
+
+#theme-picker {
+    display: flex;
+    flex-direction: column;
+}
+
+/* class selectors */
+
+.left-padding {
+    padding-left: 10px;
+}
+
+.column-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.column-section>* {
+    padding: 0 10px;
+}
+
+.title-section {
+    height: 140px;
+}
+
+.panel-container {
+    width: 400px;
+    background-color: #1A1B1F;
+    /* border: 1px solid lightcoral; */
+}
+
+.panel-container:last-child {
+    padding-bottom: 20px;
+}
+
+.section-title {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0;
+}
+
+.row-btn {
+    text-align: left;
+}
+
+.row-btn:hover {
+    cursor: pointer;
+    background-color: #BFBFBF;
+    color: white;
+}
+
+.row-btn:hover * {
+    color: white;
+    cursor: pointer;
+}
+
+.row-btn-content-container {
+    display: flex;
+    padding: 20px 10px 10px 0px;
+
+}
+
+.row-btn-content-container>label {
+    flex-grow: 1;
+    font-weight: 400;
+    font-size: 16px;
+    color: #D7D7D7;
+}
+
+.row-btn-content-container>i {
+    font-size: 15px;
+    color: #D7D7D7;
+}
+
+.row-btn-content-container>desc {
+    color: #777777;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.anchor-link {
+    color: #5986CB;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.radio-btn {
+    padding-top: 20px;
+    color: #D7D7D7;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.radio-btn>input {
+    margin-right: 7px;
+}

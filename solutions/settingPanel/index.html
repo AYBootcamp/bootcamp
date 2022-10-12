@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Settings Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Rubik font family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/fee467e864.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="panel-container">
+        <!-- Title section -->
+        <section class="column-section title-section">
+            <div id="panel-title-container">
+                <h1 id="panel-title">Quick Settings</h1><i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <button id="all-settings-btn">See all settings</button>
+        </section>
+        <hr />
+        <!-- Activity section -->
+        <section class="column-section">
+            <h1 class="section-title">Your Activity</h1>
+            <button class="row-btn">
+                <div class="row-btn-content-container">
+                    <label>Search History</label><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </button>
+            <button class="row-btn">
+                <div class="row-btn-content-container"><label>Delete last 15 mins</label><i
+                        class="fa-solid fa-trash-can"></i></div>
+            </button>
+            <a class="anchor-link" target="_blank" href="www.google.ca">Learn more about your data in Search</a>
+        </section>
+        <hr />
+        <!-- Search section -->
+        <section class="column-section">
+            <h1 class="section-title">Using Search</h1>
+            <button class="row-btn">
+                <div class="row-btn-content-container">
+                    <label>Explicit result filter</label>
+                    <a class="anchor-link" target="_blank" href="www.google.ca">Learn more about SafeSearch</a><input
+                        type="checkbox"></input>
+                </div>
+            </button>
+            <button class="row-btn">
+                <div class="row-btn-content-container">
+                    <label>Languages</label>
+                    <desc>English</desc>
+                </div>
+            </button>
+            <button class="row-btn">
+                <div class="row-btn-content-container">
+                    <label>Advanced search</label>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </button>
+        </section>
+
+        <hr />
+        <!-- Appearence section -->
+        <section class="column-section">
+            <h1 class="section-title">Appearence</h1>
+            <form id="theme-picker">
+                <label class="radio-btn" for="light-theme"><input type="radio" name="theme-buttons" id="light-theme"
+                        value="light">Light
+                    Theme</label>
+
+                <label class="radio-btn" for="dark-theme"><input checked type="radio" name="theme-buttons"
+                        id="dark-theme" value="dark">Dark
+                    Theme</label>
+
+                <label class="radio-btn" for="device-default"> <input type="radio" name="theme-buttons"
+                        id="device-default" value="device">Device Default</label>
+            </form>
+
+        </section>
+        <hr />
+        <!-- Support section -->
+        <section class="column-section">
+            <h1 class="section-title">Support</h1>
+            <button class="row-btn">
+                <div class="row-btn-content-container">
+                    <label>Search help</label>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </button>
+        </section>
+    </div>
+</body>
+
+</html>
