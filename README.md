@@ -1,4 +1,4 @@
-# bootcamp-exercise
+# bootcamp
 
 ## How to submit your exercise solutions:
 1. Create a seperate branch for your solution
