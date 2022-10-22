@@ -3,7 +3,7 @@
 ## Writting your JS solutions:
 1. Copy the problem file xxx.js and the test file xxx.test.js into "yourName" folder
 2. Complete the function body
-3. Run `yarn test 'yourName/filenname'` 
+3. Run `yarn test yourName/filenname` 
 4. Submit
 
 ## How to submit your JS solutions:
