@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Tip Calculator - By Alex
+    </title>
+    <link rel="styleSheet" href="./stytles.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Rubik">
+</head>
+<body>
+    <div id="calculator-box">
+        <!-- left  -->
+        <div id="left-box">
+            <section>
+                <h1 class="section-title">Bill</h1>
+                <span id="dollar-sign">$</span>
+                <input type="number" class="user-input" placeholder="0" />
+            </section>
+            <section>
+                <h1 class="section-title">Select Tip %</h1>
+                <div class="button-group">
+                    <button class="tip-button">5%</button>
+                    <button class="tip-button">10%</button>
+                    <button class="tip-button">15%</button>
+                    <button class="tip-button">25%</button>
+                    <button class="tip-button">50%</button>
+                    <button class="tip-button" disabled>Custom</button>
+                </div>
+            </section>
+            <section>
+                <h1 class="section-title">Number of People</h1>
+                <input type="number" class="user-input" placeholder="0" />
+            </section>
+        </div>
+
+        <!-- right -->
+        <div id="right-box">
+            <div>
+                <section class="price-section">
+                    <div class="price-section-label">
+                        <h3 class="price-section-sub-title">Tip Amount</h3>
+                        <span class="price-section-desc">/person</span>
+                    </div>
+                    <span class="price-section-price">$ 0.00</span>
+                </section>
+                <section class="price-section">
+                    <div class="price-section-label">
+                        <h3 class="price-section-sub-title">Total</h3>
+                        <span class="price-section-desc">/person</span>
+                    </div>
+                    <span class="price-section-price">$ 0.00</span>
+                </section>
+            </div>
+            <div id="reset-button-box">
+                <button id="reset-button" disabled>Rest</button>
+            </div>
+        </div>
+    </div>
+</body>
