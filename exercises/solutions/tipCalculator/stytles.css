@@ -1,0 +1,159 @@
+body {
+    /* full screen */
+    width: 100vw;
+    height: 100vh;
+    background-color: #1E1E1E;
+
+    /* center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    font-family: 'Rubik';
+}
+
+/* id selectors */
+#calculator-box {
+    width: 842px;
+    height: 500px;
+    background-color: white;
+    border-radius: 25px;
+
+    display: flex;
+}
+
+#left-box {
+    padding-left: 41px;
+    padding-top: 44px;
+}
+
+#right-box {
+    background-color: #F89A56;
+    width: 365px;
+    height: 430px;
+    border: none;
+    border-radius: 15px;
+    margin: 35px 28px;
+
+    /* column layout */
+    display: flex;
+    flex-direction: column;
+}
+
+#reset-button-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#reset-button {
+    width: 270px;
+    height: 45px;
+    margin-bottom: 40px;
+    color: #AB9686;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+/* Class selectors */
+.section-title {
+    color: #6D6D6D;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.user-input {
+    background-color: #FDD8BE;
+    border-radius: 5px;
+    width: 366px;
+    border: none;
+    padding: 9px 15px;
+    font-size: 24px;
+    text-align: end;
+    color: #626262;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tip-button {
+    background-color: #F89A56;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 24px;
+    font-weight: 400;
+    width: 112px;
+    height: 42px;
+    margin: 13px 15px 0 0;
+}
+
+
+/* price section */
+.price-section {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 40px 37px;
+}
+
+.price-section-label {
+    flex-grow: 1;
+}
+
+.price-section-sub-title {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.price-section-desc {
+    font-weight: 400;
+    font-size: 16px;
+    color: #737373;
+}
+
+.price-section-price {
+    font-weight: 400;
+    font-size: 48px;
+    color: #FFD7BA;
+}
+
+/* Nested selectors */
+#left-box > section  {
+    width: 400px;
+}
+
+#left-box > section > :last-child {
+    margin-bottom: 48px;
+}
+
+#left-box > section > #dollar-sign {
+    position: fixed;  /* this will not work if we scroll */
+    font-size: 24px;
+    color: #626262;
+    transform: translate(12px, 8px);  /* use position:fixed & transform here to move sign into the input */
+}
+
+#right-box > :first-child {
+    padding-top: 60px;
+    flex-grow: 1;
+}
+
+/* button state */
+button:hover {
+    cursor: pointer;
+}
+button:disabled {
+    cursor: not-allowed;
+}
+
+.tip-button:disabled {
+    background-color: #C6B5AA;
+    
+}
