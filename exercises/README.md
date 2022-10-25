@@ -1,5 +1,11 @@
 # bootcamp
 
+## Practice problems:
+* Problems are listed under the Figma folder
+* Each markdown file is a seperate practice problem:
+  * Read carefully to understand the requirements
+  * Look at Figma mockup and think about the HTML structure before coding
+
 ## How to submit your exercise solutions:
 1. Create a seperate branch for your solution
 2. Create a new folder named "yourName" and put code under the folder

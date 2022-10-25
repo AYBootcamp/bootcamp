@@ -1,8 +1,8 @@
-# Tips calculator
+# Tips Calculator
 
 **HTML / CSS Practice**
 
-Difficulty: :star: :star:/5
+Difficulty: :star::star:/ 5
 
 * Bill and Number of People are number input fields
 * Tip percentages are clickable button
@@ -10,4 +10,3 @@ Difficulty: :star: :star:/5
 
 ## Link to Figma
 https://www.figma.com/file/FPCTSf30UhLDI4HEkncjzl/Tip-cal?node-id=0%3A1
-
