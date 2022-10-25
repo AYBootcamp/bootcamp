@@ -1,5 +1,9 @@
 # bootcamp
 
+## Prerequisite
+* You have `npm` and `yarn` installed globally
+* You ran `yarn install` under project root (to have node_modules folder installed)
+
 ## Writting your JS solutions:
 1. Copy the problem file xxx.js and the test file xxx.test.js into "yourName" folder
 2. Complete the function body
