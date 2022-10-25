@@ -14,3 +14,6 @@
 5. Merge after approvals
 
 ### Solutions provided by Alex.
+
+* You should try to complete each practice before looking up the solutions.
+* Solutions are not perfect, they serve as hints.
