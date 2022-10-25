@@ -7,7 +7,14 @@
 
 ## Exercises
 
-All in-class and after-class exercises solution submissions
+HTML / CSS practice
+
+## JavaScript Problems
+
+* Simple JavaScript methods - syntax practice
+* Array, string manipulation practice
+* Algorithm practice
+* Data structure problems
 
 ## Projects
 
