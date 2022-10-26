@@ -1,3 +1,7 @@
+// Load resources
+import "./styles.css";
+import html from "./index.html";
+
 const NUMBERS_TO_PICK = 6; // pick 6 numbers for 649 play
 const MIN_649 = 1;
 const MAX_649 = 49;
@@ -47,7 +51,7 @@ function animateAppear(element) {
 }
 
 // onClick callback
-async function generateBtnOnClick() {
+window.generateBtnOnClick = async function generateBtnOnClick() {
     const results = generate();
     for (let i=0; i < results.length; i++) {
         const element = document.getElementById(`number-${i}`);
@@ -65,7 +69,6 @@ function initialPicks() {
         element.innerText = results[i];
     }
 }
-
 
 // Pick initial numbers
 initialPicks()

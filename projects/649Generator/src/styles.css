@@ -61,6 +61,7 @@ body {
     top: 0px;
     width: 200px;
 }
+
 #generate-btn {
     font-size: 2rem;
     border: none;
@@ -69,6 +70,7 @@ body {
     border-radius: 2rem;
     padding: 1rem;
     font-family: Montserrat;
+    font-weight: bold;
 }
 
 #generate-btn:hover {
