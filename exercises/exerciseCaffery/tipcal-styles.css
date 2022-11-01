@@ -24,7 +24,7 @@ button {
 }
 
 .bill {
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 32px;
     line-height: 34px;
@@ -45,7 +45,8 @@ button {
 
 .sign {
     padding: 9px 0px 0px 12px;
-    font-family: 'Ligconsolata';
+    /*flex-grow: 1;*/
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 24px;
     line-height: 25px;
@@ -53,17 +54,20 @@ button {
 }
 
 .bill-number {
-    padding: 9px 0px 0px 316px;
-    font-family: 'Ligconsolata';
-    font-weight: 400;
+    font-family: 'Rubik';
+    background-color: #FDD8BE;
+    border-radius: 5px;
+    width: 366px;
+    border: none;
+    padding: 9px 15px;
     font-size: 24px;
-    line-height: 25px;
+    text-align: end;
     color: #626262;
 }
 
 .select-tip {
     padding: 48px 0px 0px 41px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 32px;
     line-height: 34px;
@@ -85,7 +89,7 @@ button {
     height: 42px;
     background: #F89A56;
     border-radius: 5px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 24px;
     line-height: 25px;
@@ -106,7 +110,7 @@ button {
     height: 42px;
     background: #C6B5AA;
     border-radius: 5px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 24px;
     line-height: 25px;
@@ -118,27 +122,23 @@ button {
     width: 256px;
     height: 34px;
     padding: 54px 0px 0px 41px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 32px;
     line-height: 34px;
     color: #6D6D6D;
 }
 
-.NofP-box {
-    height: 43px;
-    width: 366px;
-    margin: 4px 0px 0px 41px;
-    background: #FDD8BE;
-    border-radius: 5px;
-}
-
 .NofP-number {
-    padding: 9px 0px 0px 341px;
-    font-family: 'Ligconsolata';
-    font-weight: 400;
+    margin: 4px 0px 0px 41px;
+    font-family: 'Rubik';
+    background-color: #FDD8BE;
+    border-radius: 5px;
+    width: 336px;
+    border: none;
+    padding: 9px 15px;
     font-size: 24px;
-    line-height: 25px;
+    text-align: end;
     color: #626262;
 }
 
@@ -166,7 +166,7 @@ button {
 .right-h1 {
     height: 21px;
     padding: 60px 0px 0px 37px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 20px;
     line-height: 21px;
@@ -176,7 +176,7 @@ button {
 .right-h2 {
     height: 17px;
     padding: 0px 0px 0px 37px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 16px;
     line-height: 17px;
@@ -194,7 +194,7 @@ button {
 
 .right-sign {
     padding: 0px 0px 0px 5px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 48px;
     line-height: 50px;
@@ -202,7 +202,7 @@ button {
 }
 
 .right-number {
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 48px;
     line-height: 50px;
@@ -217,7 +217,7 @@ button {
 .right-h3 {
     height: 21px;
     padding: 0px 0px 0px 37px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 20px;
     line-height: 21px;
@@ -227,7 +227,7 @@ button {
 .right-h2 {
     height: 17px;
     padding: 0px 0px 0px 37px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 16px;
     line-height: 17px;
@@ -249,9 +249,17 @@ button {
     background: #FFBC8C;
     border-radius: 5px;
     margin: 155px 0px 0px 47px;
-    font-family: 'Ligconsolata';
+    font-family: 'Rubik';
     font-weight: 400;
     font-size: 24px;
     line-height: 25px;
     color: #AB9686;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
 }

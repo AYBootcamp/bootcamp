@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="tipcal-styles.css">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ligconsolata">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Rubik">
     <title> Tip cal - Figma</title>
 </head>
 
@@ -13,7 +13,8 @@
             <h1 class="bill">Bill</h1>
             <div class="bill-box">
                 <h2 class="sign">$</h2>
-                <h2 class="bill-number">0</h2>
+                <!--<h2 class="bill-number">0</h2>-->
+                <input type="number" class="bill-number" placeholder="0">
             </div>
             <h1 class="select-tip">Select Tip %</h1>
             <div class="tip-choise-1">
@@ -27,9 +28,8 @@
                 <button class="button-2">Custom</button>
             </div>
             <h1 class="NofP">Number of People</h1>
-            <div class="NofP-box">
-                <h2 class="NofP-number">0</h2>
-            </div>
+            <input type="number" class="NofP-number" placeholder="0">
+
         </div>
         <div class="right-box">
             <div class="right-line-1">
@@ -52,7 +52,7 @@
                     <h1 class="right-number">0.00</h1>
                 </div>
             </div>
-            <button class="reset">Reset</button>
+            <button class="reset" disabled>Reset</button>
         </div>
     </div>
 </body>
