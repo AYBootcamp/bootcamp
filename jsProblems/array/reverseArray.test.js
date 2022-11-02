@@ -1,4 +1,4 @@
-import reverseArray from "./ReverseArray";
+import reverseArray from "./reverseArray";
 
 test("Empty Array", ()=> {
     expect(reverseArray([])).toStrictEqual([]);

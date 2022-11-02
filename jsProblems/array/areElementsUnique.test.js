@@ -1,4 +1,4 @@
-import areElementsUnique from "./AreElementsUnique";
+import areElementsUnique from "./areElementsUnique";
 
 test("Empty Array", ()=> {
     expect(areElementsUnique([])).toBeTruthy();
