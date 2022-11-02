@@ -1,0 +1,265 @@
+body {
+    background-color: black;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0px;
+}
+
+button {
+    border: 0px;
+}
+
+.tipcal-box {
+    width: 842px;
+    height: 500px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0px auto;
+    border-radius: 15px;
+}
+
+.bill {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 34px;
+    color: #6D6D6D;
+    padding: 44px 0px 0px 41px;
+    width: 64px;
+    height: 34px;
+}
+
+.bill-box {
+    width: 366px;
+    height: 43px;
+    background: #FDD8BE;
+    border-radius: 5px;
+    margin: 4px 0px 0px 41px;
+    display: flex;
+}
+
+.sign {
+    padding: 9px 0px 0px 12px;
+    /*flex-grow: 1;*/
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 25px;
+    color: #626262;
+}
+
+.bill-number {
+    font-family: 'Rubik';
+    background-color: #FDD8BE;
+    border-radius: 5px;
+    width: 366px;
+    border: none;
+    padding: 9px 15px;
+    font-size: 24px;
+    text-align: end;
+    color: #626262;
+}
+
+.select-tip {
+    padding: 48px 0px 0px 41px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 34px;
+    color: #6D6D6D;
+    width: 193px;
+    height: 34px;
+}
+
+.tip-choise-1 {
+    width: 366px;
+    height: 42px;
+    padding: 17px 0px 0px 41px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-1 {
+    width: 112px;
+    height: 42px;
+    background: #F89A56;
+    border-radius: 5px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.tip-choise-2 {
+    width: 366px;
+    height: 42px;
+    padding: 17px 0px 0px 41px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-2 {
+    width: 112px;
+    height: 42px;
+    background: #C6B5AA;
+    border-radius: 5px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.NofP {
+    width: 256px;
+    height: 34px;
+    padding: 54px 0px 0px 41px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 34px;
+    color: #6D6D6D;
+}
+
+.NofP-number {
+    margin: 4px 0px 0px 41px;
+    font-family: 'Rubik';
+    background-color: #FDD8BE;
+    border-radius: 5px;
+    width: 336px;
+    border: none;
+    padding: 9px 15px;
+    font-size: 24px;
+    text-align: end;
+    color: #626262;
+}
+
+.right-box {
+    grid-column: end;
+    height: 430px;
+    width: 365px;
+    background: #F89A56;
+    border-radius: 15px;
+    margin: 35px 42px 0px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-line-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.right-tip {
+    width: 200px;
+    height: 148px;
+}
+
+.right-h1 {
+    height: 21px;
+    padding: 60px 0px 0px 37px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+
+.right-h2 {
+    height: 17px;
+    padding: 0px 0px 0px 37px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    color: #737373;
+}
+
+.right-price-box {
+    grid-column: end;
+    height: 40px;
+    width: 144px;
+    margin: 53px 19px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-sign {
+    padding: 0px 0px 0px 5px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 50px;
+    color: #FFD7BA;
+}
+
+.right-number {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 50px;
+    color: #FFD7BA;
+}
+
+.right-line-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.right-h3 {
+    height: 21px;
+    padding: 0px 0px 0px 37px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+
+.right-h2 {
+    height: 17px;
+    padding: 0px 0px 0px 37px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    color: #737373;
+}
+
+.right-price-box-2 {
+    grid-column: end;
+    height: 40px;
+    width: 144px;
+    margin: 0px 19px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reset {
+    width: 270px;
+    height: 45px;
+    background: #FFBC8C;
+    border-radius: 5px;
+    margin: 155px 0px 0px 47px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 25px;
+    color: #AB9686;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
