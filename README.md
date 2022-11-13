@@ -7,7 +7,7 @@
 
 ## Exercises
 
-HTML / CSS practice
+* HTML / CSS practice
 
 ## JavaScript Problems
 
