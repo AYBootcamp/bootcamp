@@ -16,6 +16,9 @@ HTML / CSS practice
 * Algorithm practice
 * Data structure problems
 
+## React Exercises
+* Small scale React exercise
+
 ## Projects
 
 All project code through out the FE bootcamp
