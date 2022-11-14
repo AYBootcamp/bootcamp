@@ -4,7 +4,7 @@
  * Example:
  *  isPowOfTwo(4) => true 
  *  isPowOfTwo(9) => false
- * @param {*} numb 
+ * @param {*} numb numb is an integer
  * @returns boolean
  */
  function isPowOfTwo(numb) {
