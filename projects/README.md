@@ -16,3 +16,10 @@ npx create-react-app `projectName`
 ```
 
 After installing, run `npm start`
+
+## Live view of the solutions
+Tips calculator
+https://spa-tips-calculator.s3.ca-central-1.amazonaws.com/index.html
+
+649 Generator 
+https://spa-649-generator.s3.ca-central-1.amazonaws.com/index.html 
