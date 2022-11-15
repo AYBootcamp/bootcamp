@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -12,8 +13,20 @@ const StyledInputField = styled.input`
   color: #626262;
 `;
 
-const NumberInput = () => {
-  return <StyledInputField type="number" placeholder="0" />;
+const NumberInput = ({ value, onChange }) => {
+  return (
+    <StyledInputField
+      type="number"
+      placeholder="0"
+      value={value}
+      onChange={onChange}
+    />
+  );
+};
+
+NumberInput.propTypes = {
+  value: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 export default NumberInput;
