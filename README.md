@@ -7,7 +7,7 @@
 
 ## Exercises
 
-HTML / CSS practice
+* HTML / CSS practice
 
 ## JavaScript Problems
 
@@ -15,6 +15,9 @@ HTML / CSS practice
 * Array, string manipulation practice
 * Algorithm practice
 * Data structure problems
+
+## React Exercises
+* Small scale React exercise
 
 ## Projects
 
