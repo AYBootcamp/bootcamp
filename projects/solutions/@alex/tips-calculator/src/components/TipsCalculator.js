@@ -25,36 +25,38 @@ const InputSections = styled.div`
 const TipsCalculator = () => {
   /* 
   Define state variable at parent component and pass it down.
-  why do we do this?
+    why do we do this?
+  
+  Use string to represent bill and people because we want to utilize "placeholder" props
   */
-  const [bill, setBill] = useState(0);
-  const [people, setPeople] = useState(0);
+  const [bill, setBill] = useState("");
+  const [people, setPeople] = useState("");
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
 
   const [tipPerPerson, setTipPerPerson] = useState(null);
   const [totoalPerPerson, setTotalPerPerson] = useState(null);
 
   const calculate = () => {
-    const tip = bill * (1 + buttonProps[selectedButtonIndex].value);
-    const total = bill + tip;
+    const tip = +bill * (1 + buttonProps[selectedButtonIndex].value);
+    const total = +bill + +tip;
     setTotalPerPerson(Math.round((total / people) * 100) / 100);
     setTipPerPerson(Math.round((tip / people) * 100) / 100);
   };
 
   const reset = () => {
-    setBill(0);
-    setPeople(0);
+    setBill("");
+    setPeople("");
     setTotalPerPerson(0);
     setTipPerPerson(0);
     setSelectedButtonIndex(null);
   };
 
+  // best to use lodash for these
   const isCalculateDisabled =
-    bill === 0 || people === 0 || selectedButtonIndex === null;
+    bill === "" || people === "" || selectedButtonIndex === null;
   const isResetDisabled =
-    bill === 0 && people === 0 && selectedButtonIndex === null;
+    bill === "" && people === "" && selectedButtonIndex === null;
 
-  console.log({ selectedButtonIndex, people, bill });
   return (
     <CalculatorWrapper>
       <InputSections>

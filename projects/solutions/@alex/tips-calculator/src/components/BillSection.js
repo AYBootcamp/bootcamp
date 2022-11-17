@@ -11,7 +11,9 @@ const BillSection = ({ bill, setBill }) => {
         value={bill}
         onChange={(e) => {
           if (+e.target.value >= 0) {
-            setBill(+e.target.value);
+            setBill(e.target.value);
+          } else {
+            alert("Can't set negetive values");
           }
         }}
       />
@@ -19,7 +21,7 @@ const BillSection = ({ bill, setBill }) => {
   );
 };
 BillSection.propTypes = {
-  bill: PropTypes.number,
+  bill: PropTypes.string,
   setBill: PropTypes.func,
 };
 

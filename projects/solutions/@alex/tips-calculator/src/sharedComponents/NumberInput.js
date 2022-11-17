@@ -25,7 +25,7 @@ const NumberInput = ({ value, onChange }) => {
 };
 
 NumberInput.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.string,
   onChange: PropTypes.func,
 };
 

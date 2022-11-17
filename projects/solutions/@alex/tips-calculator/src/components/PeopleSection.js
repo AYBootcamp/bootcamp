@@ -11,7 +11,9 @@ const PeopleSection = ({ people, setPeople }) => {
         value={people}
         onChange={(e) => {
           if (+e.target.value >= 0) {
-            setPeople(+e.target.value);
+            setPeople(e.target.value);
+          } else {
+            alert("Can't set negetive values");
           }
         }}
       />
@@ -20,7 +22,7 @@ const PeopleSection = ({ people, setPeople }) => {
 };
 
 PeopleSection.propTypes = {
-  people: PropTypes.number,
+  people: PropTypes.string,
   setPeople: PropTypes.func,
 };
 
