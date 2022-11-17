@@ -3,11 +3,12 @@
 ## Folder Structure
 * All submissions should be done through PR.
 * Put your code in the folder of your name.
-* For example: solutions for Alex's exercise should be under /exercises/alex/...
+* For example: solutions for Alex's exercise should be under /exercises/solutions/alex/...
 
 ## Exercises
 
 * HTML / CSS practice
+* Referencing the Figma design and practice your HTML and styling skills
 
 ## JavaScript Problems
 
@@ -17,8 +18,11 @@
 * Data structure problems
 
 ## React Exercises
+
 * Small scale React exercise
+* Similar to Exercise, but with React
 
 ## Projects
 
-All project code through out the FE bootcamp
+* Projects are more complex than exercises and practice multiple skills at once
+* Time consuming, manage your time well
