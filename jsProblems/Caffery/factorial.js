@@ -5,9 +5,10 @@
  * @returns 
  */
 function factorial(numb) {
-    const x = 1
-    for (i = numb; i > 0; i--) {
-        x = x * i
-    }
+    // let x = 1
+    // for (let i = numb; i > 0; i--) {
+    //     x = x * i
+    // }
     return x
 }
+export default factorial
