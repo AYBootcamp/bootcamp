@@ -9,6 +9,9 @@ function factorial(numb) {
     // for (let i = numb; i > 0; i--) {
     //     x = x * i
     // }
-    return x
+    if (numb <= 1) {
+        return 1
+    }
+    return numb * factorial(numb - 1)
 }
 export default factorial
