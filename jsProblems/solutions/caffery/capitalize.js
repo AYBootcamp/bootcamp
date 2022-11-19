@@ -13,6 +13,5 @@ function capitalize(string) {
     }
     const string2 = arrAy.join(" ");
     return string2
-    // return arrAy
 }
 export default capitalize

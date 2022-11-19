@@ -8,11 +8,11 @@
 function countChars(string) {
     const stringMap = {}
     for (let i = 0; i < string.length; i++) {
-        const cH = string[i];
-        if (stringMap[cH] === undefined) {
-            stringMap[cH] = 0
+        const cHar = string[i];
+        if (stringMap[cHar] === undefined) {
+            stringMap[cHar] = 0
         }
-        stringMap[cH]++
+        stringMap[cHar]++
     }
     return stringMap
 }

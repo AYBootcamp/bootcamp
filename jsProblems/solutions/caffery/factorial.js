@@ -5,10 +5,7 @@
  * @returns 
  */
 function factorial(numb) {
-    // let x = 1
-    // for (let i = numb; i > 0; i--) {
-    //     x = x * i
-    // }
+
     if (numb <= 1) {
         return 1
     }
