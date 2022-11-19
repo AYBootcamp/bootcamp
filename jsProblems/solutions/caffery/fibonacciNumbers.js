@@ -8,9 +8,12 @@
  * @returns 
  */
 function fib(n) {
-    let x = [0, 1];
-    for (let i = 2; i <= n; i++) {
-        x[i] = x[i - 1] + x[i - 2];
+
+    if (n == 0) {
+        return 0
+    } else if (n == 1) {
+        return 1
     }
-    return x[n]
+    return fib(n - 1) + fib(n - 2)
 }
+export default fib
