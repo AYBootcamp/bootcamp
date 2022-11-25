@@ -7,7 +7,12 @@ filtered down to just the elements from the given array that pass the test imple
 */
 function filter(array, validationFn) {
     // let newArray = array.filter(validationFn)
-    return newArray
+    const newArray = []
+    for (let i = 0; i < array.length; i++) {
+        if (validationFn(array[i])) {
+            newArray.push(array[i])
+        }
+    } return newArray
 }
 
 export default filter
