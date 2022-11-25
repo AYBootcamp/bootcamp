@@ -20,8 +20,8 @@ const ComputerMark = styled.div`
   user-select: none;
 `;
 
-const Placement = ({ placement }) => {
-  switch (placement) {
+const Mark = ({ mark }) => {
+  switch (mark) {
     case 1:
       return <PlayerMark />;
     case -1:
@@ -31,8 +31,8 @@ const Placement = ({ placement }) => {
   }
 };
 
-Placement.propTypes = {
-  placement: PropTypes.number,
+Mark.propTypes = {
+  mark: PropTypes.number,
 };
 
-export default Placement;
+export default Mark;

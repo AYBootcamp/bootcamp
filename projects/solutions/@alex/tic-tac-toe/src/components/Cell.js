@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import Placement from "./Placement";
+import Mark from "./Mark";
 
 // We want a 70px x 70px square
 const Cellbox = styled.div`
@@ -19,21 +19,21 @@ const Cellbox = styled.div`
   }
 `;
 
-const Cell = ({ placement, isGameOver, onClick }) => {
+const Cell = ({ mark, isGameOver, onClick }) => {
   return (
     <Cellbox
       onClick={() => {
         !isGameOver && onClick();
       }}
     >
-      <Placement placement={placement} />
+      <Mark mark={mark} />
     </Cellbox>
   );
 };
 
 Cell.propTypes = {
   isGameOver: PropTypes.bool,
-  placement: PropTypes.number,
+  mark: PropTypes.number,
   onClick: PropTypes.func,
 };
 

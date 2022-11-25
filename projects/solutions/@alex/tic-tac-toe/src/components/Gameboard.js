@@ -22,7 +22,7 @@ const Gameboard = ({ gameboard, isGameOver, onCellClick }) => {
         board.push(
           <Cell
             key={`cell-${row}-${col}`}
-            placement={gameboard[row][col]}
+            mark={gameboard[row][col]}
             isGameOver={isGameOver}
             onClick={() => onCellClick([row, col])}
           />

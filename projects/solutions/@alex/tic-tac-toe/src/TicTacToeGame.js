@@ -1,6 +1,4 @@
-import "./App.css";
-
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Gameboard from "./components/Gameboard";
@@ -45,13 +43,9 @@ const RestartButton = styled.button`
 /*===================================
   Main Component
 ===================================*/
-/**
- * This is the top most component that contains our tic tac toe game
- */
-
 const TicTacToeGame = () => {
   /*===================================
-    Game logic
+    State variables
   ===================================*/
   const [isGameOver, setIsGameOver] = useState(false);
   const [winner, setWinner] = useState("draw");
@@ -62,13 +56,17 @@ const TicTacToeGame = () => {
     [0, 0, 0],
   ]); // use 1 to represent player, use -1 to represent computer
 
-  // Helper function to update the board, this is reusble
+  /*===================================
+    Helper functions
+  ===================================*/
+  // update the gameboard
   const updateBoard = (row, col, isPlayerTurn) => {
     const newGameboard = [...gameboard];
     newGameboard[row][col] = isPlayerTurn ? 1 : -1;
     setGameboard(newGameboard);
   };
 
+  // Player moves and update the board
   const onPlayerMove = (coordinates) => {
     const [row, col] = coordinates;
     if (!isPlayerTurn || gameboard[row][col] !== 0) {
@@ -78,6 +76,7 @@ const TicTacToeGame = () => {
     setIsPlayerTurn(!isPlayerTurn); // Change turn to computers
   };
 
+  // Computer moves and update the board
   const onComputerMove = () => {
     // Calculate remaining coordinates to place move
     const remainingCoords = [];
@@ -96,6 +95,7 @@ const TicTacToeGame = () => {
     return move;
   };
 
+  // Reset the game, set states to initial values
   const restartGame = () => {
     setIsGameOver(false);
     setWinner("draw");
@@ -107,9 +107,10 @@ const TicTacToeGame = () => {
     ]);
   };
 
-  /*
-    With every move, we check if we have a winner.
-  */
+  /*===================================
+    UseEffects: Game logic
+  ===================================*/
+  // Check winner on each move
   useEffect(() => {
     const winner = checkWinner(gameboard);
     if (winner !== null) {
@@ -117,14 +118,14 @@ const TicTacToeGame = () => {
       setWinner(winner);
       return;
     } else {
+      // If no winner, calculate computer's move
       if (!isPlayerTurn) {
-        // Computer's turn, simulate 1s of thinking time.
         setTimeout(() => {
           const computerMove = onComputerMove();
           const [row, col] = computerMove;
           updateBoard(row, col, isPlayerTurn);
           setIsPlayerTurn(!isPlayerTurn);
-        }, 1000); // 1s delay
+        }, 1000); // 1s delay (thinking time)
       }
     }
   }, [isPlayerTurn]);
