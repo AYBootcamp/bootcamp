@@ -19,15 +19,20 @@ const Cellbox = styled.div`
   }
 `;
 
-const Cell = ({ placement, onClick }) => {
+const Cell = ({ placement, isGameOver, onClick }) => {
   return (
-    <Cellbox onClick={onClick}>
+    <Cellbox
+      onClick={() => {
+        !isGameOver && onClick();
+      }}
+    >
       <Placement placement={placement} />
     </Cellbox>
   );
 };
 
 Cell.propTypes = {
+  isGameOver: PropTypes.bool,
   placement: PropTypes.number,
   onClick: PropTypes.func,
 };

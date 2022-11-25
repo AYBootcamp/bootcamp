@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Gameboard from "./components/Gameboard";
+import { checkWinner } from "./helpers";
 
 /*===================================
   Styled Components
@@ -106,62 +107,27 @@ const TicTacToeGame = () => {
     ]);
   };
 
+  /*
+    With every move, we check if we have a winner.
+  */
   useEffect(() => {
-    if (!isPlayerTurn) {
-      // Computer's turn, simulate 2s of thinking time.
-      setTimeout(() => {
-        const computerMove = onComputerMove();
-        const [row, col] = computerMove;
-        updateBoard(row, col, isPlayerTurn);
-        setIsPlayerTurn(!isPlayerTurn);
-      }, 2000); // 2s delay
+    const winner = checkWinner(gameboard);
+    if (winner !== null) {
+      setIsGameOver(true);
+      setWinner(winner);
+      return;
+    } else {
+      if (!isPlayerTurn) {
+        // Computer's turn, simulate 1s of thinking time.
+        setTimeout(() => {
+          const computerMove = onComputerMove();
+          const [row, col] = computerMove;
+          updateBoard(row, col, isPlayerTurn);
+          setIsPlayerTurn(!isPlayerTurn);
+        }, 1000); // 1s delay
+      }
     }
   }, [isPlayerTurn]);
-
-  useEffect(() => {
-    // Logic to check if game is over
-    for (let i = 0; i < 3; i++) {
-      // Check Rows
-      if (
-        gameboard[i][0] !== 0 &&
-        gameboard[i][0] === gameboard[i][1] &&
-        gameboard[i][0] === gameboard[i][2]
-      ) {
-        setWinner(gameboard[i][0] === 1 ? "player" : "computer");
-        setIsGameOver(true);
-        break;
-      }
-      // Check columns
-      if (
-        gameboard[i][0] !== 0 &&
-        gameboard[0][i] === gameboard[1][i] &&
-        gameboard[0][i] === gameboard[2][i]
-      ) {
-        setWinner(gameboard[0][i] === 1 ? "player" : "computer");
-        setIsGameOver(true);
-        break;
-      }
-    }
-
-    // Check diagnals
-    if (
-      gameboard[0][0] !== 0 &&
-      gameboard[0][0] === gameboard[1][1] &&
-      gameboard[0][0] === gameboard[2][2]
-    ) {
-      setWinner(gameboard[0][0] === 1 ? "player" : "computer");
-      setIsGameOver(true);
-    }
-
-    if (
-      gameboard[2][0] !== 0 &&
-      gameboard[2][0] === gameboard[1][1] &&
-      gameboard[2][0] === gameboard[0][2]
-    ) {
-      setWinner(gameboard[0][0] === 1 ? "player" : "computer");
-      setIsGameOver(true);
-    }
-  }, [gameboard]);
 
   return (
     <GameWrapper>
@@ -173,7 +139,11 @@ const TicTacToeGame = () => {
           <h3>Turn: {isPlayerTurn ? "Player" : "Computer"}</h3>
         )}
       </GameInfoSection>
-      <Gameboard gameboard={gameboard} onCellClick={onPlayerMove} />
+      <Gameboard
+        gameboard={gameboard}
+        isGameOver={isGameOver}
+        onCellClick={onPlayerMove}
+      />
       {isGameOver && (
         <RestartButton onClick={restartGame}>Restart</RestartButton>
       )}

@@ -14,7 +14,7 @@ const BoardWrapper = styled.div`
 /**
  * Gameboard is the where we place Cells
  */
-const Gameboard = ({ gameboard, onCellClick }) => {
+const Gameboard = ({ gameboard, isGameOver, onCellClick }) => {
   const renderBoard = () => {
     const board = [];
     for (let row = 0; row < 3; row++) {
@@ -23,6 +23,7 @@ const Gameboard = ({ gameboard, onCellClick }) => {
           <Cell
             key={`cell-${row}-${col}`}
             placement={gameboard[row][col]}
+            isGameOver={isGameOver}
             onClick={() => onCellClick([row, col])}
           />
         );
@@ -35,6 +36,7 @@ const Gameboard = ({ gameboard, onCellClick }) => {
 
 Gameboard.propTypes = {
   gameboard: PropTypes.arrayOf(PropTypes.array),
+  isGameOver: PropTypes.bool,
   onCellClick: PropTypes.func,
 };
 
