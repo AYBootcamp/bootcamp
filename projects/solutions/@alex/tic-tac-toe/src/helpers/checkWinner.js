@@ -42,5 +42,16 @@ export const checkWinner = (gameboard) => {
     return gameboard[2][0] === 1 ? "player" : "computer";
   }
 
-  return null; // If null is returned, game is not over yet
+  /*===================================
+        Check no more moves
+    ===================================*/
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      if (gameboard[row][col] === 0) {
+        return null; // If null is returned, game is not over yet
+      }
+    }
+  }
+
+  return "draw"; // no winner and no more moves to make
 };

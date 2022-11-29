@@ -135,7 +135,11 @@ const TicTacToeGame = () => {
       <GameInfoSection>
         <h1>Tic-Tac-Toe Game!</h1>
         {isGameOver ? (
-          <h3>Game is over! Winner is: {winner}</h3>
+          winner === "draw" ? (
+            <h3>No more moves! Draw!</h3>
+          ) : (
+            <h3>Game is over! Winner is: {winner}</h3>
+          )
         ) : (
           <h3>Turn: {isPlayerTurn ? "Player" : "Computer"}</h3>
         )}
