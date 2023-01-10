@@ -25,3 +25,7 @@ The card component can be divided into 3 sections.
 ## Solution Live View
 
 N/A
+
+## Extra
+
+[LIPSUM Long text generator](https://www.google.com/url?q=https://www.lipsum.com/&sa=D&source=editors&ust=1673389939667909&usg=AOvVaw0DWaxuOGmn3S_PeE9J8pk0)
