@@ -1,19 +1,9 @@
-# Project - 649 Generator
+# 649 Generator
 
-## Project Size: 
-    1-2 Weeks
+Full screen single component that helps user generate a random 649 lotto number
 
-## Project Description:
+## Project Details:
 
-    Full screen single component that helps user generate a random 649 lotto number
-
-## Project Skills:
-
-    #componentDesign #Animation #HTML #CSS #randomNumbers #sortedArray
-
-## Project Requirements:
-
-0. Use either React or native HTML/CSS to implement
 1. Implement the UI:
     1. 6 box to represent generated lotto numbers
     2. Generate button
@@ -23,3 +13,12 @@
    2. Numbers should be sorted from smallest to largers
    3. Numbers should not be duplicated
    4. Numbers should be within the range 1-49
+
+
+## Required Skills:
+* HTML / CSS / JSX
+* React Component
+* React State
+* Array API - sort
+* Animation
+* Math API - Random
