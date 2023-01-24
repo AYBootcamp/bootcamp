@@ -1,4 +1,5 @@
 import React from 'react';
+import { ADD, MULTIPLY } from './constants'
 
 class ClassApp extends React.Component {
     constructor(props) {
@@ -10,10 +11,10 @@ class ClassApp extends React.Component {
         }
     }
     MultiplyOrPlus = (props) => {
-        if (props === "Multiply") {
+        if (props === MULTIPLY) {
             return (this.state.num1 * this.state.num2)
-        } else if (props === "Add") {
-            return (this.state.num1 - (-this.state.num2))
+        } else if (props === ADD) {
+            return (parseInt(this.state.num1) + parseInt(this.state.num2))
         } else {
             return 0
         }

@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import ClassApp from './ClassApp';
+import App from './Calculator';
 import reportWebVitals from './reportWebVitals';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* "choose" can be "Multiply" or "Add" */}
-    <App choose="Multiply" />
-    <ClassApp choose="Add" />
+    <App />
   </React.StrictMode>
 );
 

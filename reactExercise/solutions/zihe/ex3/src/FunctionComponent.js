@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import { ADD, MULTIPLY } from './constants'
 
 const App = (props) => {
   const [num1, setNum1] = useState(0)
@@ -7,10 +8,10 @@ const App = (props) => {
   const [total, setTotal] = useState(0)
 
   function MultiplyOrPlus(props) {
-    if (props === "Multiply") {
+    if (props === MULTIPLY) {
       return (num1 * num2)
-    } else if (props === "Add") {
-      return (num1 - (-num2))
+    } else if (props === ADD) {
+      return (parseInt(num1) + parseInt(num2))
     } else {
       return 0
     }
