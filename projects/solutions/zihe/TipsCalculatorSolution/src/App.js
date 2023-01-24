@@ -1,15 +1,18 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import classnames from 'classnames';
 
 function App() {
-  const [bill, setbill] = useState(0)
-  const [tipp, settipp] = useState(0)
-  const [people, setpeople] = useState(1)
-  const [tip, settip] = useState(0)
-  const [total, settotal] = useState(0)
+  const [bill, setBill] = useState(0)
+  const [tipPercentage, setTipPercentage] = useState(0)
+  const [people, setPeople] = useState(1)
+  const [tip, setTip] = useState(0)
+  const [total, setTotal] = useState(0)
+  const tips = [0.05, 0.1, 0.15, 0.25, 0.5]
+  const [selectTip, setSelectTip] = useState(false)
 
   function clickChange(e) {
-    var btns = document.getElementsByClassName('tipbtn');
+    var btns = document.getElementsByClassName('tip-btn');
     for (var i = 0; i < 5; i++) {
       btns[i].style.borderColor = '#F4F4F4';
     }
@@ -17,32 +20,32 @@ function App() {
   }
 
   function resetChange() {
-    var btns = document.getElementsByClassName('tipbtn');
-    for (var i = 0; i < 5; i++) {
+    let btns = document.getElementsByClassName('tip-btn');
+    for (let i = 0; i < 5; i++) {
       btns[i].style.borderColor = '#F4F4F4';
     }
-    var calculatebtn = document.getElementsByClassName('calculate');
-    calculatebtn[0].style.background = 'rgb(200, 197, 197)';
-    calculatebtn[0].style.color = '#AB9686';
-    var resetbtn = document.getElementsByClassName('reset');
-    resetbtn[0].style.background = 'rgb(200, 197, 197)';
-    resetbtn[0].style.color = '#AB9686';
+    let calculateBtn = document.getElementsByClassName('calculate');
+    calculateBtn[0].style.background = 'rgb(200, 197, 197)';
+    calculateBtn[0].style.color = '#AB9686';
+    let resetBtn = document.getElementsByClassName('reset');
+    resetBtn[0].style.background = 'rgb(200, 197, 197)';
+    resetBtn[0].style.color = '#AB9686';
   }
 
   function clickReset() {
-    var resetbtn = document.getElementsByClassName('reset');
-    resetbtn[0].style.background = 'rgb(195, 189, 119)';
-    resetbtn[0].style.color = 'black';
+    let resetBtn = document.getElementsByClassName('reset');
+    resetBtn[0].style.background = 'rgb(195, 189, 119)';
+    resetBtn[0].style.color = 'black';
   }
 
-  function clickCalculate() {
-    var calculatebtn = document.getElementsByClassName('calculate');
-    if (tipp > 0 | bill > 0) {
-      console.log({ tipp }, { bill });
-      calculatebtn[0].style.background = 'rgb(195, 189, 119)';
-      calculatebtn[0].style.color = 'black';
+  useEffect(() => {
+    let calculateBtn = document.getElementsByClassName('calculate');
+    if (tipPercentage > 0 && bill > 0) {
+      console.log({ tipPercentage }, { bill });
+      calculateBtn[0].style.background = 'rgb(195, 189, 119)';
+      calculateBtn[0].style.color = 'black';
     }
-  }
+  }, [tipPercentage, bill,])
 
   return (
     <div className='background'>
@@ -51,102 +54,76 @@ function App() {
           Bill
         </div>
         <div>
-          <input className='billinput' value={bill} type='number' placeholder='0'
+          <input className={classnames('bill-input')} value={bill} type='number' placeholder='0'
             onChange={(e) => {
-              setbill(e.target.value);
+              setBill(e.target.value);
               clickReset();
-              clickCalculate(bill, tipp)
             }}></input>
         </div>
         <div className='tip'>
           Select Tip %
         </div>
-        <div className='tipnumber'>
-          <button className='tipbtn' value={tipp} type='number'
-            onClick={(e) => {
-              settipp(0.05);
-              clickChange(e);
-              clickReset();
-              clickCalculate(bill, tipp)
-            }} >5%</button>
-          <button className='tipbtn' value={tipp} type='number'
-            onClick={(e) => {
-              settipp(0.1);
-              clickChange(e);
-              clickReset();
-              clickCalculate(bill, tipp)
-            }} >10%</button>
-          <button className='tipbtn' value={tipp} type='number'
-            onClick={(e) => {
-              settipp(0.15);
-              clickChange(e);
-              clickReset();
-              clickCalculate(bill, tipp)
-            }} >15%</button>
-          <br />
-          <button className='tipbtn' value={tipp} type='number'
-            onClick={(e) => {
-              settipp(0.25);
-              clickChange(e);
-              clickReset();
-              clickCalculate(bill, tipp)
-            }} >25%</button>
-          <button className='tipbtn' value={tipp} type='number'
-            onClick={(e) => {
-              settipp(0.5);
-              clickChange(e);
-              clickReset();
-              clickCalculate(bill, tipp)
-            }} >50%</button>
-          <button className='custom'>Custom</button>
+        <div className='tip-number'>
+          {tips.map((tipPercentageBtn, index) => (
+            <button className={classnames('tip-btn', { 'tip-btn-select': selectTip === index })}
+              value={tipPercentage} type='number'
+              onClick={(e) => {
+                setSelectTip(index);
+                setTipPercentage(tipPercentageBtn);
+                clickReset();
+                /* clickChange(e); */
+              }} >{tipPercentageBtn * 100}%</button>
+          ))}
+          <button className='custom' disabled={true}>Custom</button>
         </div>
         <div className='people'>
           Number of people
         </div>
         <div>
-          <input className='peopleinput' value={people} type='number' placeholder='0'
+          <input className={classnames('people-input')} value={people} type='number' placeholder='0'
             onChange={(e) => {
-              setpeople(e.target.value);
+              setPeople(e.target.value);
               clickReset()
             }}></input>
         </div>
       </div>
       <div className='right'>
         <div className='right1'>
-          <span className='tipAP'>
-            <div className='tipamount'>Tip Amount</div>
+          <span>
+            <div className='tip-amount'>Tip Amount</div>
             <div className='person1'>/person</div>
           </span>
-          <span className='finaltip'>
+          <span className='final-tip'>
             $ {tip.toFixed(2)}
           </span>
         </div>
         <div className='right2'>
-          <span className='totalp'>
+          <span>
             <div className='total'>Total</div>
             <div className='person2'>/person</div>
           </span>
-          <span className='finaltotal'>
+          <span className='final-total'>
             $ {total.toFixed(2)}
           </span>
         </div>
         <div>
           <button className='calculate' onClick={() => {
-            settip(bill * tipp / people);
-            settotal(bill * (1 + tipp) / people)
+            setTip(bill * tipPercentage / people);
+            setTotal(bill * (1 + tipPercentage) / people)
           }}>
             Calculate
           </button>
         </div>
         <div>
-          <button className='reset' onClick={() => {
-            setbill(0);
-            settipp(0);
-            setpeople(1);
-            settip(0);
-            settotal(0);
-            resetChange()
-          }}>
+          <button className={classnames('reset')}
+            onClick={() => {
+              setBill(0);
+              setTipPercentage(0);
+              setPeople(1);
+              setTip(0);
+              setTotal(0);
+              resetChange()
+            }}>
             Reset
           </button>
         </div>

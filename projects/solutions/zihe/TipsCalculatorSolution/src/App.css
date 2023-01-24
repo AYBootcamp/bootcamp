@@ -20,7 +20,7 @@ body {
   color: #6D6D6D;
 }
 
-.billinput {
+.bill-input {
   margin-top: 4px;
   margin-left: 41px;
   width: 366px;
@@ -43,12 +43,13 @@ body {
   color: #6D6D6D;
 }
 
-.tipnumber {
+.tip-number {
   margin-left: 41px;
   margin-top: 4px;
+  width: 381px;
 }
 
-.tipnumber>* {
+.tip-btn {
   margin-top: 13px;
   margin-right: 15px;
   font-weight: 400;
@@ -64,8 +65,24 @@ body {
   border-color: #F4F4F4;
 }
 
+.tip-btn-select {
+  border-color: black;
+}
+
 .custom {
+  margin-top: 13px;
+  margin-right: 15px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 25px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 112px;
+  height: 42px;
   background: #C6B5AA;
+  border-radius: 5px;
+  border: 1;
+  border-color: #F4F4F4;
 }
 
 .people {
@@ -77,7 +94,7 @@ body {
   color: #6D6D6D;
 }
 
-.peopleinput {
+.people-input {
   margin-top: 4px;
   margin-left: 41px;
   width: 366px;
@@ -108,7 +125,7 @@ body {
   margin-bottom: 51px;
 }
 
-.tipamount,
+.tip-amount,
 .total {
   font-weight: 400;
   font-size: 20px;
@@ -124,8 +141,8 @@ body {
   color: #737373;
 }
 
-.finaltip,
-.finaltotal {
+.final-tip,
+.final-total {
   margin-left: 65px;
   font-weight: 400;
   font-size: 48px;
@@ -133,7 +150,7 @@ body {
   color: #FFD7BA;
 }
 
-.finaltotal {
+.final-total {
   margin-left: 109px;
 }
 
