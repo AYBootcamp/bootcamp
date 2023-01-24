@@ -10,3 +10,8 @@ Please create your own storybook folder with your name.
 
 ## Components Design
 Please check `@components` folder for all the components we will implement
+
+
+## Live View
+
+[Storybook](https://spa-alex-storybook.s3.ca-central-1.amazonaws.com/index.html)
