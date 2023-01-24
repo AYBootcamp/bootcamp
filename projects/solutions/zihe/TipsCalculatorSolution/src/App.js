@@ -71,7 +71,7 @@ function App() {
                 setSelectTip(index);
                 setTipPercentage(tipPercentageBtn);
                 clickReset();
-                /* clickChange(e); */
+                clickChange(e);
               }} >{tipPercentageBtn * 100}%</button>
           ))}
           <button className='custom' disabled={true}>Custom</button>
