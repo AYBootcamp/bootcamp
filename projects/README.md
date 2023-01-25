@@ -19,10 +19,10 @@ After installing, run `npm start`
 
 ## Live view of the solutions
 Tips Calculator
-https://spa-tips-calculator.s3.ca-central-1.amazonaws.com/index.html
+http://spa-tips-calculator.s3-website.ca-central-1.amazonaws.com 
 
 649 Generator 
-https://spa-649-generator.s3.ca-central-1.amazonaws.com/index.html 
+http://spa-649-generator.s3-website.ca-central-1.amazonaws.com 
 
 Tic Tac Toe Game
-https://spa-tic-tac-toe-game.s3.amazonaws.com/index.html
+http://spa-tic-tac-toe-game.s3-website-us-east-1.amazonaws.com  
