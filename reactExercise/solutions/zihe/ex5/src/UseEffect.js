@@ -8,6 +8,7 @@ const UseEffect = () => {
 
     useEffect(() => {
         setTimeout(() => { setIsLoading(false) }, 3000)
+        return () => { alert('Leave?') }
     }, [])
 
     useEffect(() => {

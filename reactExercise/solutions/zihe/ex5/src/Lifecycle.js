@@ -18,9 +18,9 @@ class Lifecycle extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (nextState.x3 === true && nextState.x1 === false && nextState.x2 === false) {
             this.setState({ x3: false })
-            return 0;
+            return false;
         }
-        return 1;
+        return true;
     }
     componentDidUpdate() {
         if (this.state.x1 && this.state.x2 && this.state.x3) {
