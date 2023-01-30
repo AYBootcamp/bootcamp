@@ -1,2 +1,2 @@
-export const FRUITTIMER = 3
-export const ANIMALTIMER = 5
+export const FRUIT_TIMER = 3
+export const ANIMAL_TIMER = 5

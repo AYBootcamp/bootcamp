@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 const useReFetch = (propsTimer) => {
     const [loading, setLoading] = useState(true)
     const [timer, setTimer] = useState(propsTimer * 1000)
-    const shouldReFetch = () => {
+    const ReFetch = () => {
         setLoading(true)
         setTimer(propsTimer * 1000)
     }
@@ -14,6 +14,6 @@ const useReFetch = (propsTimer) => {
         }
     }, [loading, timer])
 
-    return [loading, shouldReFetch]
+    return [loading, ReFetch]
 }
 export default useReFetch

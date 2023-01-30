@@ -1,20 +1,19 @@
 import React from 'react';
-import useFakeFetch from './hooks/useFakeFetch';
+import useReFetch from './hooks/useReFetch';
 
 function Fruit(props) {
-  const isLoading = useFakeFetch(props.fruitTime)
+  // eslint-disable-next-line no-unused-vars
+  const [isLoading, reFetch] = useReFetch(props.fruitTime)
 
   if (isLoading) {
     return <div>loading...</div>
   }
   return (
-    <>
-      <ul>
-        <li>Grape</li>
-        <li>Watermelon</li>
-        <li>Strawberry</li>
-      </ul>
-    </>
+    <ul>
+      <li>Grape</li>
+      <li>Watermelon</li>
+      <li>Strawberry</li>
+    </ul>
   )
 }
 
