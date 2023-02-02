@@ -1,24 +1,34 @@
-# Project - Personal Website
+# Personal Website
 
-## Project Size: 
-    1-4 Weeks
+This is your personal profolio, a place to showcase your skills and projects
 
 ## Project Description:
 
-    A simple, personalized website for professional biography about YOU.
+    A simple, personalized, well-polished website about you.
 
-## Project Skills:
+## Example mockup/design:
 
-    #SinglePageApplication #DevOps #GithubPages #Domain #UIDesign
+Feel free to find your own design
+
+https://www.wix.com/website-template/view/html/2846
+
+
+## Required Skills:
+
+* HTML / CSS / JSX
+* React Components
+* React State
+* React-router library
+* Advanced CSS
+  * Responsive design
+  * Animation
+* Github pages hosting
 
 ## Project Requirements:
 
-1. Use React to implement
-2. Implement the UI:
-    * Design and build your own website, some examples 
-        https://collegeinfogeek.com/personal-website-examples/ 
-3. Build and Deploy
-   * Build and deploy your personal website on github pages. [Doc](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-4. (Optional)
-   * Purchase a domain and configure it to land on your github page
-   * (Google Domains and Route 53)
+1. Setup your own repository for this project
+2. Break project down into smaller tasks
+3. Focus on the overall design at first - use fake contents
+   1. https://www.lipsum.com/   Fake text generator
+   2. https://fakeimg.pl/       Fake image source
+4. Hosting: https://create-react-app.dev/docs/deployment/#github-pages
