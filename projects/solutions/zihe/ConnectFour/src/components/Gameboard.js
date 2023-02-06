@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Cell from './Cell';
+import { MAX_ROW, MAX_COL } from '../constants'
 
 const BoardWrapper = styled.div`
 display: flex;
@@ -11,8 +12,8 @@ flex-wrap: wrap;
 const Gameboard = ({ gameboard, isGameOver, cellClick }) => {
     const renderBoard = () => {
         const board = [];
-        for (let row = 0; row < 6; row++) {
-            for (let col = 0; col < 7; col++) {
+        for (let row = 0; row < MAX_ROW; row++) {
+            for (let col = 0; col < MAX_COL; col++) {
                 board.push(
                     <Cell
                         mark={gameboard[row][col]}

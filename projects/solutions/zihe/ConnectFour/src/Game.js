@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import Gameboard from './components/Gameboard';
-import { check } from './check';
+import { checkWinner } from './helpers/checkWinner';
+import { checkRow } from "./helpers/checkRow";
+import { MAX_COL } from "./constants";
 
 const GameWrapper = styled.div`
 width:100vw;
@@ -19,13 +21,13 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 `
-export const UserMark = styled.div`
+const UserMark = styled.div`
 width:0px;
 height:0px;
 border: 25px solid goldenrod;
 border-radius: 50%;
 `
-export const ComputerMark = styled.div`
+const ComputerMark = styled.div`
 width:0px;
 height:0px;
 border: 25px solid silver;
@@ -36,13 +38,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-const UserMarker = styled.span`
-display:flex;
-justify-content: center;
-align-items: center;
-padding-right: 20px;
-`
-const ComputerMarker = styled.span`
+const Marker = styled.span`
 display:flex;
 justify-content: center;
 align-items: center;
@@ -59,6 +55,8 @@ border: 1px solid;
 }
 `
 const Game = () => {
+  const [checkWinnerRow, setCheckWinnerRow] = useState(0);
+  const [checkWinnerCol, setCheckWinnerCol] = useState(0);
   const [gameboard, setGameboard] = useState([
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
@@ -75,46 +73,45 @@ const Game = () => {
   useEffect(() => {
     const mouseMove = (e) => {
       setCoords({ x: e.clientX, y: e.clientY })
+      return () => window.removeEventListener('mousemove', mouseMove)
     }
     window.addEventListener('mousemove', mouseMove)
-  })
+  }, [coords])
 
   const updateBoard = (row, col, isPlayerTurn) => {
     const newBoard = [...gameboard];
     newBoard[row][col] = isPlayerTurn ? 1 : 2;
     setGameboard(newBoard);
+    setCheckWinnerRow(row);
+    setCheckWinnerCol(col);
   }
+
   const playerMove = (coordinates) => {
     let [row, col] = coordinates;
-    if (!isPlayerTurn || gameboard[row][col] !== 0) { return; }
-    for (let playerRow = 5; playerRow >= row; playerRow--) {
-      if (gameboard[playerRow][col] === 0) {
-        row = playerRow;
-        break
-      }
+    if (isPlayerTurn && gameboard[row][col] === 0) {
+      row = checkRow(gameboard, col)
+      updateBoard(row, col, isPlayerTurn);
+      setIsPlayerTurn(!isPlayerTurn);
     }
-    updateBoard(row, col, isPlayerTurn);
-    setIsPlayerTurn(!isPlayerTurn);
   }
+
   const computerMove = () => {
     const remainingCoords = [];
-    for (let row = 0; row < 6; row++) {
-      for (let col = 0; col < 7; col++) {
-        if (gameboard[row][col] === 0) {
-          remainingCoords.push([row, col]);
-        }
+    for (let col = 0; col < MAX_COL; col++) {
+      if (gameboard[0][col] === 0) {
+        remainingCoords.push([0, col])
       }
     }
     const max = remainingCoords.length;
     const min = 0;
     const moveIndex = Math.floor(Math.random() * (max - min) + min);
     const move = remainingCoords[moveIndex];
-    const computerRow = move[0];
+    let computerRow = move[0];
     const computerCol = move[1];
-    for (let newRow = 5; newRow >= computerRow; newRow--) {
-      if (gameboard[newRow][computerCol] === 0) { return [newRow, computerCol] }
-    }
+    computerRow = checkRow(gameboard, computerCol);
+    return [computerRow, computerCol];
   }
+
   const restartGame = () => {
     setIsGameOver(false);
     setWinner('draw');
@@ -130,7 +127,7 @@ const Game = () => {
   }
 
   useEffect(() => {
-    const winner = check(gameboard);
+    const winner = checkWinner(gameboard, isPlayerTurn, checkWinnerRow, checkWinnerCol);
     if (winner !== null) {
       setIsGameOver(true);
       setWinner(winner);
@@ -150,11 +147,13 @@ const Game = () => {
   return (
     <GameWrapper>
       <GameInfo>
-        <UserMark style={{ position: "absolute", left: coords.x - 22, top: coords.y + 5 }} />
+        <div>
+          {isPlayerTurn ? (<UserMark style={{ position: "absolute", left: coords.x - 22, top: coords.y + 5 }} />) : <div />}
+        </div>
         <h2>Connect Four</h2>
         <ColorIndicator>
-          <UserMarker><UserMark />User </UserMarker>
-          <ComputerMarker><ComputerMark />Computer</ComputerMarker>
+          <Marker><UserMark />User </Marker>
+          <Marker><ComputerMark />Computer</Marker>
         </ColorIndicator>
         <div>
           {isGameOver ? (winner === 'draw' ? (<h3>No more moves! Draw!</h3>)
