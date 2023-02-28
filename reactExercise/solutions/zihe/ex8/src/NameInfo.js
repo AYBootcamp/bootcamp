@@ -8,16 +8,16 @@ function NameInfo() {
     const [name, setName] = useState('');
     const [age, setAge] = useState(null);
     const [gender, setGender] = useState(null);
-    const [nation, setNation] = useState([[], [], [], [], []]);
-    const [loading, setloading] = useState(false);
+    const [nation, setNation] = useState([]);
+    const [isLoading, setloading] = useState(false);
     const [history, setHistory] = useState(null);
 
     const data = {
-        labels: [nation[0][0], nation[1][0], nation[2][0], nation[3][0], nation[4][0]],
+        labels: nation.map((item) => item.country_id),
         datasets: [
             {
                 label: '# of Nations',
-                data: [nation[0][1], nation[1][1], nation[2][1], nation[3][1], nation[4][1]],
+                data: nation.map((item) => item.probability),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -43,15 +43,7 @@ function NameInfo() {
         const genderizeData = await (await fetch(`https://api.genderize.io?name=${newName}`)).json();
         setGender(genderizeData.gender);
         const nationalizeData = await (await fetch(`https://api.nationalize.io?name=${newName}`)).json();
-        setNation(
-            [
-                [nationalizeData.country[0].country_id, nationalizeData.country[0].probability],
-                [nationalizeData.country[1].country_id, nationalizeData.country[1].probability],
-                [nationalizeData.country[2].country_id, nationalizeData.country[2].probability],
-                [nationalizeData.country[3].country_id, nationalizeData.country[3].probability],
-                [nationalizeData.country[4].country_id, nationalizeData.country[4].probability]
-            ]
-        );
+        setNation(nationalizeData.country);
         setloading(false);
     };
 
@@ -70,15 +62,18 @@ function NameInfo() {
                 <input type='text' name='name'></input>
                 <button type='submit'>submit</button>
             </form>
-            {loading === true ? (
+            {isLoading === true ? (
                 <Spinner />) : (
-                <div>
+                name === '' ? (<div>
+                    <p>Enter a name and get the information!</p>
+                </div>) : (<div>
                     <p>Name: {name}</p>
                     <p>Age: {age}</p>
                     <p>Gender: {gender}</p>
-                    <p>Nationality: {nation[0][0]}</p>
+                    <p>Nationality: {nation.length > 0 && nation[0].country_id}</p>
                     <Pie data={data} />
-                </div>
+                </div>)
+
             )
             }
         </div>
