@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import { keyBy } from 'lodash'
 
 import fakeFetch from '../helpers/fakeFetch'
 import mockParkData from '../mocks/parks.json'
 import { Park } from '../types/Park'
-import { FetchStatus } from './store'
+import { FetchStatus, RootState } from './store'
 // Async thunk
 // export const fetchStudentIds = createAsyncThunk(
 //     'students/fetchStudentIds',
@@ -44,6 +44,9 @@ export const parksSlice = createSlice({
         // })
     },
 })
+
+export const getParkByIdSelector = (state: RootState, id: Park['id']) =>
+    state.parks.data[id]
 
 // Action creators are generated for each case reducer function
 // export const {} = parksSlice.actions

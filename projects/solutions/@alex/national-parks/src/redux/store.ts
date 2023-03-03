@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import parksReducer, { ParksState } from './parks'
+import parksReducer from './parks'
 
 export type FetchStatus = 'initial' | 'fulfilled' | 'rejected'
 

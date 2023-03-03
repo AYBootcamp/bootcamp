@@ -4,6 +4,7 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
+import { ThemeProvider } from '@mui/material/styles'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
@@ -23,13 +24,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+// App entry point
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <GlobalStyle />
-            <App />
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <App />
+            </ThemeProvider>
         </Provider>
     </React.StrictMode>
 )

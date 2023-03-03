@@ -23,11 +23,14 @@ const ParkGridView = () => {
     const renderParkRow = (rowNum: number) => {
         const parks = Object.values(parkData)
 
-        return Array.from(Array(5).keys()).map((col) => (
-            <Grid key={`park-grid-row-${rowNum}-col-${col}`} item xs>
-                <ParkThumbnail park={parks[1 * rowNum + col]} />
-            </Grid>
-        ))
+        return Array.from(Array(5).keys()).map((col) => {
+            const park = parks[1 * rowNum + col]
+            return (
+                <Grid key={`park-grid-row-${rowNum}-col-${col}`} item xs>
+                    <ParkThumbnail park={park} parkId={park.id} />
+                </Grid>
+            )
+        })
     }
 
     /* ===========================

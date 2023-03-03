@@ -1,11 +1,9 @@
-import { ThemeProvider } from '@mui/material/styles'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
 import LandingPage from './routes/LandingPage'
 import ParkDetailPage from './routes/ParkDetailPage'
 import ParksPage from './routes/ParksPage'
-import theme from './theme'
 
 export enum PATH {
     ROOT = '/',
@@ -36,11 +34,7 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-    return (
-        <ThemeProvider theme={theme}>
-            <RouterProvider router={router} />
-        </ThemeProvider>
-    )
+    return <RouterProvider router={router} />
 }
 
 export default App
