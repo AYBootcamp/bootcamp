@@ -59,12 +59,18 @@ Pagination - sometimes all results can't be returned by a single request, thus m
 
 ------
 # Features to implement
+* List all parks
+  * Paginated api
+  * URL navigation. Example:  /parks?page=3
+
 * Search / Filter for parks by:
   * Name
   * State
   * activities
   * Fees (free)
 
+* Present park detail information
+* 
 ------
 # Project Design
 
