@@ -56,6 +56,15 @@ Pagination - sometimes all results can't be returned by a single request, thus m
 * total: the total number of data available
 * start: the number of data we are receiving from 
 
+
+------
+# Features to implement
+* Search / Filter for parks by:
+  * Name
+  * State
+  * activities
+  * Fees (free)
+
 ------
 # Project Design
 
