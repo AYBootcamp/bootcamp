@@ -35,14 +35,17 @@ The following packages are installed for improved developer experience.
 ```
 
 ## API endpoints
-Overview: https://www.nps.gov/subjects/developer/api-documentation.htm 
-Get API key: https://www.nps.gov/subjects/developer/get-started.htm 
+### API Documentation: https://www.nps.gov/subjects/developer/api-documentation.htm 
+
+### Get API key: https://www.nps.gov/subjects/developer/get-started.htm 
+
+### Endpoints Overview
 * parks: https://developer.nps.gov/api/v1/parks
 * activities: https://developer.nps.gov/api/v1/activities
 
 ```
 The api endpoints free tier has limited calls per week.
-Save the responses as mock while development
+Recommend to save a copy of responses as mock during early phase of development
 ```
 
 ### API Notes
