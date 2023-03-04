@@ -39,6 +39,8 @@ The following packages are installed for improved developer experience.
 
 ### Get API key: https://www.nps.gov/subjects/developer/get-started.htm 
 
+### Postman API Collection: https://guohao-public-assets.s3.ca-central-1.amazonaws.com/US+National+Park+Service.postman_collection.json 
+
 ### Endpoints Overview
 * parks: https://developer.nps.gov/api/v1/parks
 * activities: https://developer.nps.gov/api/v1/activities
@@ -74,3 +76,22 @@ Pagination - sometimes all results can't be returned by a single request, thus m
 ## Components
 * Use Material UI component where appropriate
 * Style with theme color palette
+
+
+
+------
+# UI Design
+
+## Park Details
+For each park, we'd like to display the following data
+| Property Key            | Description                           |
+|-------------------------|---------------------------------------|
+| url                     | Official website                      |
+| fullName                | Park's full name                      |
+| description             | Brief description about the park      |
+| activities              | Things to do                          |
+| states                  | State location                        |
+| contacts                | Phone and Email information           |
+| entranceFees            | Entrance fee                          |
+| addresses               | Address                               |   
+| images                  | Some images taken in the park         |
