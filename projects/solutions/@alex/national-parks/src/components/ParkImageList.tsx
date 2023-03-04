@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { Image } from '../types/Park'
 
 const HoverImg = styled.img`
-    width: 260px;
+    max-width: 100%;
+    max-height: 100%;
     :hover {
         cursor: pointer;
     }
@@ -21,6 +22,8 @@ const ImagesList = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
 `
 
 const ImageContainer = styled.div`
@@ -28,6 +31,10 @@ const ImageContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 10px;
 `
 
 const ImageTitle = styled.span`
@@ -61,7 +68,6 @@ const ParkImageList: React.FC<{ images: Image[] }> = ({ images }) => {
             {images.map((img, index) => (
                 <ImageContainer key={`${img.title}-${index}`}>
                     <ImageTitle>{img.title} </ImageTitle>
-
                     <HoverImg
                         src={img.url}
                         alt={img.altText}
