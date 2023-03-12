@@ -3,6 +3,10 @@ import { Grid } from '@mui/material'
 import { useAppSelector } from '../hooks/reduxHooks'
 import ParkThumbnail from './ParkThumbnail'
 
+const ROW_COUNT = 5
+const COL_COUNT = 5
+export const DISPLAY_COUNT = ROW_COUNT * COL_COUNT
+
 const ParkGridView = () => {
     /* ===========================
      Hooks
@@ -13,7 +17,7 @@ const ParkGridView = () => {
      Handlers
      ============================= */
     const renderParks = () => {
-        return Array.from(Array(5).keys()).map((row) => (
+        return Array.from(Array(ROW_COUNT).keys()).map((row) => (
             <Grid key={`park-grid-row-${row}`} container item spacing={2}>
                 {renderParkRow(row)}
             </Grid>
@@ -28,7 +32,7 @@ const ParkGridView = () => {
             return <div>something went wrong...</div>
         }
 
-        return Array.from(Array(5).keys()).map((col) => {
+        return Array.from(Array(COL_COUNT).keys()).map((col) => {
             const park = parks[1 * rowNum + col]
             return (
                 <Grid key={`park-grid-row-${rowNum}-col-${col}`} item xs>

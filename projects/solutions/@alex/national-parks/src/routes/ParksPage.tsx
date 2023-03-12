@@ -2,7 +2,7 @@ import { Container, Pagination } from '@mui/material'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import ParkGridView from '../components/ParkGridView'
+import ParkGridView, { DISPLAY_COUNT } from '../components/ParkGridView'
 import Spinner from '../components/Spinner'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { fetchParks, isDataLoading } from '../redux/parks'
@@ -19,6 +19,7 @@ const CenteredPagination = styled(Pagination)`
 const ParksPage = () => {
     const isLoading = useAppSelector((state) => isDataLoading(state))
     const fetchStatus = useAppSelector((state) => state.parks.fetchStatus)
+    const pagination = useAppSelector((state) => state.parks.pagination)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -31,10 +32,12 @@ const ParksPage = () => {
     if (isLoading) {
         return <Spinner />
     }
+
+    const count = Math.ceil(pagination.total / DISPLAY_COUNT)
     return (
         <Container sx={{ margin: '20px' }}>
             <ParkGridView />
-            <CenteredPagination count={10} shape="rounded" size="large" />
+            <CenteredPagination count={count} shape="rounded" size="large" />
         </Container>
     )
 }

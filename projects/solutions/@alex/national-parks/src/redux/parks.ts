@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { keyBy } from 'lodash'
 
+import { DISPLAY_COUNT } from '../components/ParkGridView'
 // import mockParkData from '../mocks/parks.json'
 import FetchStatus from '../types/FetchStatus'
+import Pagination from '../types/Pagination'
 import { Park } from '../types/Park'
 import { ParkResponse } from '../types/ParkResponse'
 import { RootState } from './store'
@@ -17,6 +19,7 @@ export const fetchParks = createAsyncThunk(
                 'https://developer.nps.gov/api/v1/parks?' +
                     new URLSearchParams({
                         api_key: 'kdhe0gpIVlUBrGqqO9PzhWnh3DMy3cD3Nr1mAlrk',
+                        limit: `${DISPLAY_COUNT}`,
                     }).toString()
             )
         const response = await (await fetchRequest()).json()
@@ -39,12 +42,19 @@ export const fetchParks = createAsyncThunk(
 export interface ParksState {
     fetchStatus: FetchStatus
     data: Record<Park['id'], Park>
+    pagination: Pagination
 }
 
 // Define the initial state using that type
 const initialState: ParksState = {
     fetchStatus: FetchStatus.Initial,
     data: {},
+    pagination: {
+        total: 0,
+        start: 0,
+        current: 0,
+        limit: DISPLAY_COUNT, // this is fixed number: get 25 items per request
+    },
 }
 
 export const parksSlice = createSlice({
@@ -61,6 +71,10 @@ export const parksSlice = createSlice({
         builder.addCase(fetchParks.fulfilled, (state, action) => {
             state.fetchStatus = FetchStatus.Fulfilled
             state.data = keyBy(action.payload.data, 'id')
+            state.pagination = {
+                ...state.pagination,
+                total: parseInt(action.payload.total),
+            }
         })
     },
 })
