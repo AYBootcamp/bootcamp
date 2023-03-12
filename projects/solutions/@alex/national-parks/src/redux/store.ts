@@ -2,8 +2,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import parksReducer from './parks'
 
-export type FetchStatus = 'initial' | 'fulfilled' | 'rejected'
-
 // instead of defining the reducers in the reducer field of configureStore, combine them here:
 const rootReducer = combineReducers({ parks: parksReducer })
 export const store = configureStore({
