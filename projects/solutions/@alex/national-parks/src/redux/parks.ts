@@ -12,7 +12,7 @@ import { RootState } from './store'
 // Async thunk
 export const fetchParks = createAsyncThunk(
     'parks/fetchParks',
-    async () => {
+    async ({ pageNumber }: { pageNumber: number }) => {
         // Fetch requests
         const fetchRequest = async () =>
             await fetch(
@@ -20,6 +20,7 @@ export const fetchParks = createAsyncThunk(
                     new URLSearchParams({
                         api_key: 'kdhe0gpIVlUBrGqqO9PzhWnh3DMy3cD3Nr1mAlrk',
                         limit: `${DISPLAY_COUNT}`,
+                        start: `${pageNumber * DISPLAY_COUNT}`,
                     }).toString()
             )
         const response = await (await fetchRequest()).json()
@@ -28,6 +29,9 @@ export const fetchParks = createAsyncThunk(
     {
         condition: (args, { getState, extra }) => {
             const { fetchStatus } = (getState() as RootState).parks
+            if (args.pageNumber !== 0) {
+                return true // always fetch if a new pagination
+            }
             if (
                 fetchStatus === FetchStatus.Loading ||
                 fetchStatus === FetchStatus.Fulfilled
@@ -52,7 +56,7 @@ const initialState: ParksState = {
     pagination: {
         total: 0,
         start: 0,
-        current: 0,
+        current: 1,
         limit: DISPLAY_COUNT, // this is fixed number: get 25 items per request
     },
 }
@@ -73,6 +77,7 @@ export const parksSlice = createSlice({
             state.data = keyBy(action.payload.data, 'id')
             state.pagination = {
                 ...state.pagination,
+                current: action.meta.arg.pageNumber * DISPLAY_COUNT,
                 total: parseInt(action.payload.total),
             }
         })

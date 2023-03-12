@@ -1,10 +1,12 @@
 import { Box, Container, Divider, Tab, Tabs, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { PATH } from '../App'
-import { useAppSelector } from '../hooks/reduxHooks'
-import { getParkByIdSelector } from '../redux/parks'
+import Spinner from '../components/Spinner'
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
+import { fetchParks, getParkByIdSelector, isDataLoading } from '../redux/parks'
+import FetchStatus from '../types/FetchStatus'
 
 const NavBar = () => {
     /* ===========================
@@ -16,6 +18,18 @@ const NavBar = () => {
     const park = useAppSelector((state) =>
         getParkByIdSelector(state, parkId ?? '')
     )
+    const isLoading = useAppSelector((state) => isDataLoading(state))
+    const fetchStatus = useAppSelector((state) => state.parks.fetchStatus)
+
+    const dispatch = useAppDispatch()
+
+    // App initial fetch
+    useEffect(() => {
+        if (fetchStatus === FetchStatus.Initial) {
+            dispatch(fetchParks({ pageNumber: 1 }))
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // useMemo for performance improvements
     const routing = React.useMemo(() => {
@@ -74,7 +88,8 @@ const NavBar = () => {
                 </Tabs>
             </Box>
             <Divider />
-            <Outlet />
+            {/* eslint-disable-next-line no-constant-condition */}
+            {isLoading ? <Spinner /> : <Outlet />}
         </Container>
     )
 }

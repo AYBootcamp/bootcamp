@@ -26,7 +26,6 @@ const ParkGridView = () => {
 
     const renderParkRow = (rowNum: number) => {
         const parks = Object.values(parkData)
-
         // Guard against bad data
         if (!parks || parks.length === 0) {
             return <div>something went wrong...</div>
