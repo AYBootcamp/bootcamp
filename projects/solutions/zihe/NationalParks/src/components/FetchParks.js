@@ -1,11 +1,47 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setParkListNames, setClickParkName, setPages, setUrl } from '../redux/parkSlice';
+import { setParkListNames, setParkListPics, setClickParkName, setPages, setUrl } from '../redux/parkSlice';
 import { LIMIT } from '../constants';
+import styled from 'styled-components';
+
+const Styledli = styled.li`
+list-style: none; 
+margin:10px;
+padding: 5px;
+width: 250px;
+height:200px;
+overflow:hidden;
+`
+const StyledUl = styled.ul`
+display: flex;
+flex-wrap: wrap;
+`
+const StyledImg = styled.img`
+width:100%;
+height:100%;
+`
+const StyledListLink = styled(Link)`
+text-decoration: none;
+color:black;
+&:hover{
+    cursor:pointer;
+    font-weight: 600;
+}
+`
+const PagesLink = styled(Link)`
+text-decoration: none;
+color:black;
+padding:10px;
+&:hover{
+    cursor:pointer;
+    font-weight: 600;
+}
+`
 
 export default function FetchParks() {
     const parkListNames = useSelector((state) => state.park.parkListNames);
+    const parkListPics = useSelector((state) => state.park.parkListPics);
     const Numbers = useSelector((state) => state.park.Numbers);
     const url = useSelector((state) => state.park.Url)
     const pageNumbers = Math.ceil(Numbers / LIMIT)
@@ -16,33 +52,38 @@ export default function FetchParks() {
     useEffect(() => {
         const parksList = async () => {
             const parkNames = await (await fetch(url)).json();
-            let arrey = [];
+            let nameArray = [];
+            let picArray = [];
             for (let i = 0; i < parkNames.data.length; i++) {
-                arrey.push(parkNames.data[i].fullName);
+                nameArray.push(parkNames.data[i].fullName);
+                picArray.push(parkNames.data[i].images[0].url);
             }
-            dispatch(setParkListNames(arrey))
+            dispatch(setParkListNames(nameArray));
+            dispatch((setParkListPics(picArray)));
         };
         parksList();
-        console.log(url)
     }, [url])
 
     return (
         <div>
             <div>
-                <ul>
+                <StyledUl>
                     {parkListNames.map((item, index) => (
-                        <li><Link key={index} to={'DetailPage'}
+                        <Styledli><StyledListLink key={index} to={'DetailPage'}
                             onClick={() => {
                                 dispatch(setClickParkName(item))
-                            }}>{item}</Link></li>
+                            }}>{item}
+                            <StyledImg src={parkListPics[index]} alt={item} />
+                        </StyledListLink>
+                        </Styledli>
                     ))}
-                </ul>
+                </StyledUl>
             </div>
-            <div>{numArray.map((item, index) => (<Link
+            <div>{numArray.map((item, index) => (<PagesLink
                 onClick={() => {
                     dispatch(setPages(index));
                     dispatch(setUrl())
-                }}>{item}</Link>))}</div>
+                }}>{item}</PagesLink>))}</div>
         </div>
     )
 }

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import FetchParks from '../components/FetchParks'
-//import { url } from '../constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNumbers } from '../redux/parkSlice'
 
 export default function ListPage() {
     const dispatch = useDispatch();
-    const Numbers = useSelector((state) => state.park.Numbers)
+    const Numbers = useSelector((state) => state.park.Numbers);
     const url = useSelector((state) => state.park.Url)
     useEffect(() => {
         const parkNumber = async () => {
@@ -23,7 +22,7 @@ export default function ListPage() {
                 <FetchParks />
             </div>
             <div>
-                {Numbers} parks in total
+                {/* {Numbers} parks in total */}
             </div>
         </div>
     )

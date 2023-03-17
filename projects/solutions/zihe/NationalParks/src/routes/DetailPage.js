@@ -79,7 +79,7 @@ export default function DetailPage() {
     return (
         <div>
             <div>
-                <h3>Brif description</h3>
+                <h3>Brief description</h3>
                 <p>{parkdscpt}</p>
                 <p>Topics: {topic.map((item, index) => <span>{item}; </span>)}</p>
                 <Link to={parkUrl}>{parkUrl}</Link>

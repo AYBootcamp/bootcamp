@@ -5,6 +5,7 @@ export const parkSlice = createSlice({
     name: 'park',
     initialState: {
         parkListNames: [],
+        parkListPics: [],
         clickParkName: '',
         Numbers: 0,
         pages: 0,
@@ -13,6 +14,9 @@ export const parkSlice = createSlice({
     reducers: {
         setParkListNames: (state, action) => {
             state.parkListNames = action.payload
+        },
+        setParkListPics: (state, action) => {
+            state.parkListPics = action.payload
         },
         setClickParkName: (state, action) => {
             state.clickParkName = action.payload
@@ -30,5 +34,5 @@ export const parkSlice = createSlice({
     }
 })
 
-export const { setParkListNames, setClickParkName, setNumbers, setPages, setUrl } = parkSlice.actions;
+export const { setParkListNames, setParkListPics, setClickParkName, setNumbers, setPages, setUrl } = parkSlice.actions;
 export default parkSlice.reducer;
