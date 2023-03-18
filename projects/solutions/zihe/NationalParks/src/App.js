@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from './routes/LandingPage';
 import HomePage from './routes/HomePage';
 import ListPage from './routes/ListPage';
-import DetailPage from './routes/DetailPage';
+import DetailPage from './routes/DetailsPage';
 const router = createBrowserRouter([
   {
     path: '',
