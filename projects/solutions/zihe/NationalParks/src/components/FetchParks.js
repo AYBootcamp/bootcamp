@@ -9,9 +9,14 @@ import {
   setUrl,
   setData,
   setNumbers,
+  setDetails,
+  setIsLoading,
 } from '../redux/parkSlice';
 import { LIMIT } from '../constants';
 import styled from 'styled-components';
+import Loader from '../components/spinner';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Styledli = styled.li`
   list-style: none;
@@ -37,26 +42,31 @@ const StyledListLink = styled(Link)`
     font-weight: 600;
   }
 `;
-const PagesLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-  &:hover {
-    cursor: pointer;
-    font-weight: 600;
-  }
-`;
+const Pages = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`
+const StyledSpinner = styled.div`
+display:flex;
+height: 100vh;
+justify-content: center;
+align-items: center;
+`
 
 export default function FetchParks() {
-  const parkListNames = useSelector((state) => state.park.parkListNames);
-  const parkListPics = useSelector((state) => state.park.parkListPics);
-  const numbers = useSelector((state) => state.park.numbers);
-  const url = useSelector((state) => state.park.url);
+  const { parkListNames, parkListPics, pages, numbers, url, data, isLoading } = useSelector((state) => state.park);
   const pageNumbers = Math.ceil(numbers / LIMIT);
   const dispatch = useDispatch();
-  const numArray = [];
-  for (let i = 1; i <= pageNumbers; i++) {
-    numArray.push(i);
+  /*   const numArray = [];
+    for (let i = 1; i <= pageNumbers; i++) {
+      numArray.push(i);
+    } */
+
+  const handleChange = (event, value) => {
+    dispatch(setIsLoading(true));
+    dispatch(setPages(value - 1));
+    dispatch(setUrl());
   }
 
   useEffect(() => {
@@ -72,10 +82,13 @@ export default function FetchParks() {
       dispatch(setParkListNames(nameArray));
       dispatch(setParkListPics(picArray));
       dispatch(setData(parkNames.data));
+      dispatch(setIsLoading(false));
     };
     parksList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
+
+  if (isLoading) { return (<StyledSpinner><Loader /></StyledSpinner>) }
 
   return (
     <div>
@@ -85,9 +98,10 @@ export default function FetchParks() {
             <Styledli>
               <StyledListLink
                 key={`lists-${index}`}
-                to={'DetailPage'}
+                to={`${data[index].id}`}
                 onClick={() => {
-                  dispatch(setClickParkName(item));
+                  dispatch(setClickParkName(data[index].id));
+                  dispatch(setDetails(data[index]));
                 }}
               >
                 {item}
@@ -97,19 +111,11 @@ export default function FetchParks() {
           ))}
         </StyledUl>
       </div>
-      <div>
-        {numArray.map((item, index) => (
-          <PagesLink
-            key={`pages-${index}`}
-            onClick={() => {
-              dispatch(setPages(index));
-              dispatch(setUrl());
-            }}
-          >
-            {item}
-          </PagesLink>
-        ))}
-      </div>
+      <Pages>
+        <Stack spacing={2}>
+          <Pagination count={pageNumbers} page={pages + 1} onChange={handleChange} />
+        </Stack>
+      </Pages>
     </div>
   );
 }

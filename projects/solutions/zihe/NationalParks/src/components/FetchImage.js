@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 export default function FetchImg() {
-    const parkImg = useSelector((state) => state.park.parkDetails.imgs);
+    const parkImg = useSelector((state) => state.park.details.images);
 
     return (
         <div>

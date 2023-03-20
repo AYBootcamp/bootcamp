@@ -3,19 +3,19 @@ import styled, { keyframes } from 'styled-components';
 
 // constant sizes
 const SMALL = {
-  width: '20px',
-  height: '20px',
-  border: '3px',
-};
-const MEDIUM = {
   width: '40px',
   height: '40px',
-  border: '4px',
+  border: '10px',
+};
+const MEDIUM = {
+  width: '80px',
+  height: '80px',
+  border: '15px',
 };
 const LARGE = {
-  width: '60px',
-  height: '60px',
-  border: '5px',
+  width: '120px',
+  height: '120px',
+  border: '20px',
 };
 
 const sizeMap = { small: SMALL, medium: MEDIUM, large: LARGE };
@@ -30,10 +30,10 @@ const rotate = keyframes`
 `;
 
 const StyledSpinner = styled.div`
-  animation: 1.5s linear infinite ${rotate};
+  animation: 2s linear infinite ${rotate};
   animation-play-state: inherit;
-  border: solid ${(props) => props.size.border} #cfd0d1;
-  border-top: ${(props) => props.size.border} solid #1c87c9;
+  border: solid ${(props) => props.size.border} #8fbc8f;
+  border-top: ${(props) => props.size.border} solid seagreen;
   border-radius: 50%;
   width: ${(props) => props.size.width};
   height: ${(props) => props.size.height};

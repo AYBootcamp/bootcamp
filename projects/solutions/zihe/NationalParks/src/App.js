@@ -1,9 +1,10 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from './routes/LandingPage';
 import HomePage from './routes/HomePage';
 import ListPage from './routes/ListPage';
 import DetailPage from './routes/DetailsPage';
+
 const router = createBrowserRouter([
   {
     path: '',
@@ -18,16 +19,14 @@ const router = createBrowserRouter([
         element: <ListPage />,
       },
       {
-        path: 'ListPage/DetailPage',
-        element: <DetailPage />
-      }
-    ]
-  }
-])
+        path: 'ListPage/:id',
+        element: <DetailPage />,
+      },
+    ],
+  },
+]);
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
 export default App;

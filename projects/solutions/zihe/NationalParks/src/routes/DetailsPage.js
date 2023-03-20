@@ -1,23 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import FetchImg from '../components/FetchImage';
-import { setParkDetails } from '../redux/parkSlice';
+import OperatingHours from '../components/OperatingHours';
 
 export default function DetailPage() {
-  const clickParkName = useSelector((state) => state.park.clickParkName);
-  const dispatch = useDispatch();
-  const parkDetail = useSelector((state) => state.park.parkDetails);
-  const data = useSelector((state) => state.park.data);
-
-  useEffect(() => {
-    const newParkInfo = () => {
-      const parkInformation = data.find((p) => p.fullName === clickParkName);
-      dispatch(setParkDetails(parkInformation));
-    };
-    newParkInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const parkDetail = useSelector((state) => state.park.details);
 
   return (
     <div>
@@ -36,7 +24,7 @@ export default function DetailPage() {
         </div>
         <h3>Location</h3>
         <p>
-          state: {parkDetail.states}; city: {parkDetail.city}
+          state: {parkDetail.states}; city: {parkDetail.addresses[0].city}
         </p>
         <p>Direction: {parkDetail.directionsInfo}</p>
         <Link to={parkDetail.directionsUrl}>{parkDetail.directionsUrl}</Link>
@@ -65,22 +53,24 @@ export default function DetailPage() {
         </div>
         <h3>Weather Information</h3>
         <p>{parkDetail.weatherInfo}</p>
+        <h3>Operating Hours</h3>
+        <OperatingHours />
         <h3>Contact</h3>
         <div style={{ display: 'flex' }}>
           <span>
-            {parkDetail.phones.map((item, index) => (
+            {parkDetail.contacts.phoneNumbers.map((item, index) => (
               <div>{item.type}: </div>
             ))}
           </span>
           <span>
-            {parkDetail.phones.map((item, index) => (
+            {parkDetail.contacts.phoneNumbers.map((item, index) => (
               <div>{item.phoneNumber}</div>
             ))}
           </span>
         </div>
         <p>
           Email:{' '}
-          {parkDetail.emails.map((item, index) => (
+          {parkDetail.contacts.emailAddresses.map((item, index) => (
             <span>{item.emailAddress}</span>
           ))}
         </p>

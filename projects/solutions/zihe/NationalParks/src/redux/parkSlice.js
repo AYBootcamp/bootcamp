@@ -10,24 +10,12 @@ export const parkSlice = createSlice({
     numbers: 0,
     pages: 0,
     url: URL,
-    parkDetails: {
-      description: '',
-      topics: [],
-      url: '',
-      states: '',
-      city: '',
-      directionsInfo: '',
-      directinsUrl: '',
-      activities: [],
-      phones: [],
-      emails: [],
-      weatherInfo: '',
-      addresses: [],
-      entranceFees: [],
-      entrancePasses: [],
-      imgs: [],
-    },
     data: [],
+    details: [],
+    isLoading: true,
+    searchTerm: '',
+    searchResults: [],
+    searchAllNames: [],
   },
   reducers: {
     setParkListNames: (state, action) => {
@@ -49,27 +37,25 @@ export const parkSlice = createSlice({
       let startPage = state.pages * LIMIT;
       state.url = `${URL}&start=${startPage}`;
     },
-    setParkDetails: (state, action) => {
-      state.parkDetails.description = action.payload.description;
-      state.parkDetails.topics = action.payload.topics;
-      state.parkDetails.url = action.payload.url;
-      state.parkDetails.states = action.payload.states;
-      state.parkDetails.city = action.payload.addresses[0].city;
-      state.parkDetails.directionsInfo = action.payload.directionsInfo;
-      state.parkDetails.directionsUrl = action.payload.directionsUrl;
-      state.parkDetails.activities = action.payload.activities;
-      state.parkDetails.phones = action.payload.contacts.phoneNumbers;
-      state.parkDetails.emails = action.payload.contacts.emailAddresses;
-      state.parkDetails.weatherInfo = action.payload.weatherInfo;
-      state.parkDetails.addresses = action.payload.addresses;
-      state.parkDetails.entranceFees = action.payload.entranceFees;
-      state.parkDetails.entrancePasses = action.payload.entrancePasses;
-      state.parkDetails.imgs = action.payload.images;
-    },
     setData: (state, action) => {
       state.data = action.payload;
     },
-  },
+    setDetails: (state, action) => {
+      state.details = action.payload;
+    },
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
+    setSearchResults: (state, action) => {
+      state.searchResults = action.payload;
+    },
+    setSearchAllNames: (state, action) => {
+      state.searchAllNames = action.payload;
+    },
+  }
 });
 
 export const {
@@ -79,7 +65,11 @@ export const {
   setNumbers,
   setPages,
   setUrl,
-  setParkDetails,
   setData,
+  setDetails,
+  setIsLoading,
+  setSearchTerm,
+  setSearchResults,
+  setSearchAllNames,
 } = parkSlice.actions;
 export default parkSlice.reducer;
