@@ -33,9 +33,14 @@ const ParkGridView = () => {
 
         return Array.from(Array(COL_COUNT).keys()).map((col) => {
             const park = parks[5 * rowNum + col]
+
+            if (!park) {
+                return null
+            }
+
             return (
                 <Grid key={`park-grid-row-${rowNum}-col-${col}`} item xs>
-                    <ParkThumbnail park={park} parkId={park.id} />
+                    <ParkThumbnail park={park} parkId={park?.id} />
                 </Grid>
             )
         })
