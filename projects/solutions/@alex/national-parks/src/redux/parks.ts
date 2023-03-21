@@ -28,15 +28,13 @@ export const fetchParks = createAsyncThunk(
     },
     {
         condition: (args, { getState, extra }) => {
-            const { fetchStatus } = (getState() as RootState).parks
-            if (args.pageNumber !== 0) {
-                return true // always fetch if a new pagination
+            const { fetchStatus, pagination } = (getState() as RootState).parks
+            if (pagination.pageToData[args.pageNumber]) {
+                // if page is loaded previously, don't fetch
+                return false
             }
-            if (
-                fetchStatus === FetchStatus.Loading ||
-                fetchStatus === FetchStatus.Fulfilled
-            ) {
-                return false // do not fire fetch request if already loaded or loading
+            if (fetchStatus === FetchStatus.Loading) {
+                return false // do not fire fetch request if loading
             }
         },
     }
@@ -58,13 +56,18 @@ const initialState: ParksState = {
         start: 0,
         current: 1,
         limit: DISPLAY_COUNT, // this is fixed number: get 25 items per request
+        pageToData: {},
     },
 }
 
 export const parksSlice = createSlice({
     name: 'parks',
     initialState,
-    reducers: {},
+    reducers: {
+        changePage: (state, action) => {
+            state.pagination.current = action.payload * DISPLAY_COUNT
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchParks.pending, (state, action) => {
             state.fetchStatus = FetchStatus.Loading
@@ -73,12 +76,18 @@ export const parksSlice = createSlice({
             state.fetchStatus = FetchStatus.Rejected
         })
         builder.addCase(fetchParks.fulfilled, (state, action) => {
+            const pageNumber = action.meta.arg.pageNumber
+
             state.fetchStatus = FetchStatus.Fulfilled
-            state.data = keyBy(action.payload.data, 'id')
+            state.data = { ...state.data, ...keyBy(action.payload.data, 'id') }
             state.pagination = {
                 ...state.pagination,
-                current: action.meta.arg.pageNumber * DISPLAY_COUNT,
+                current: pageNumber * DISPLAY_COUNT,
                 total: parseInt(action.payload.total),
+                pageToData: {
+                    ...state.pagination.pageToData,
+                    [pageNumber]: action.payload.data,
+                },
             }
         })
     },
@@ -89,7 +98,8 @@ export const getParkByIdSelector = (state: RootState, id: Park['id']) =>
 
 export const isDataLoading = (state: RootState) =>
     state.parks.fetchStatus !== FetchStatus.Fulfilled
+
 // Action creators are generated for each case reducer function
-// export const {} = parksSlice.actions
+export const { changePage } = parksSlice.actions
 
 export default parksSlice.reducer

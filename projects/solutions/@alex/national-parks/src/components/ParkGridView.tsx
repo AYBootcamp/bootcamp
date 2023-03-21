@@ -11,7 +11,7 @@ const ParkGridView = () => {
     /* ===========================
      Hooks
      ============================= */
-    const parkData = useAppSelector((state) => state.parks.data)
+    const pagination = useAppSelector((state) => state.parks.pagination)
 
     /* ===========================
      Handlers
@@ -25,7 +25,7 @@ const ParkGridView = () => {
     }
 
     const renderParkRow = (rowNum: number) => {
-        const parks = Object.values(parkData)
+        const parks = pagination.pageToData[pagination.current / DISPLAY_COUNT]
         // Guard against bad data
         if (!parks || parks.length === 0) {
             return <div>something went wrong...</div>

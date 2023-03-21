@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import ParkGridView, { DISPLAY_COUNT } from '../components/ParkGridView'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { fetchParks } from '../redux/parks'
+import { changePage, fetchParks } from '../redux/parks'
 
 const CenteredPagination = styled(Pagination)`
     width: 100%;
@@ -26,7 +26,10 @@ const ParksPage = () => {
         _: React.ChangeEvent<unknown>,
         pageNumber: number
     ) => {
-        dispatch(fetchParks({ pageNumber }))
+        if (!pagination.pageToData[pageNumber]) {
+            dispatch(fetchParks({ pageNumber }))
+        }
+        dispatch(changePage(pageNumber))
     }
 
     /* ===========================
