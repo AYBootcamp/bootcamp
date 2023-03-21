@@ -39,7 +39,33 @@ const ParkThumbnail: React.FC<ParkThumbnailProps> = ({ park, parkId }) => {
     /* ===========================
      JSX - Summary of the given park
      ============================= */
-    return <Item onClick={handleClick}>{park.fullName}</Item>
+    return (
+        <Item
+            onClick={handleClick}
+            sx={{
+                backgroundImage: `url(${park.images[0].url})`,
+                backgroundSize: 'cover',
+            }}
+        >
+            <div
+                style={{
+                    display: 'flex',
+                    background: 'rgb(255, 255,255,0.5)',
+                    justifyContent: 'center',
+                    borderRadius: '25px',
+                }}
+            >
+                <span
+                    style={{
+                        color: '#000',
+                        fontWeight: 'bold',
+                    }}
+                >
+                    {park.fullName}
+                </span>
+            </div>
+        </Item>
+    )
 }
 
 export default ParkThumbnail
