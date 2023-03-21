@@ -71,5 +71,6 @@ export const {
   setSearchTerm,
   setSearchResults,
   setSearchAllNames,
+  setSearchAllIds,
 } = parkSlice.actions;
 export default parkSlice.reducer;

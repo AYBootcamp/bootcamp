@@ -1,10 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { URL } from '../constants'
-import { setSearchAllNames, setSearchTerm, setSearchResults, setClickParkName, setDetails } from '../redux/parkSlice';
+import { setSearchTerm, setSearchResults, setClickParkName, setDetails } from '../redux/parkSlice';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
+const SearchLi = styled.li`
+list-style-type: none;
+`
 const SearchLink = styled(Link)`
 text-decoration: none;
 color:black;
@@ -13,39 +16,54 @@ display: block;
     font-weight: 800;
 }
 `
-
+const Search = styled.div`
+display:flex;
+justify-content: center;
+align-items: center;
+margin-top: 30px;
+`
 export default function SearchForm() {
     const dispatch = useDispatch();
-    const { numbers, searchTerm, searchResults, searchAllNames } = useSelector((state) => state.park);
-    const url = `${URL}&limit=${numbers}`;
+    const { searchTerm, searchResults, searchAllNames, clickParkName, url } = useSelector((state) => state.park);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const fetchAllNames = async () => {
-            const allNames = await (await fetch(url)).json();
-            let nameArray = [];
-            for (let i = 0; i < allNames.data.length; i++) {
-                nameArray.push(allNames.data[i].fullName);
-            };
-            dispatch(setSearchAllNames(nameArray));
+        if (searchTerm === '') return;
+        else {
+            const results = searchAllNames.filter((name) =>
+                name.toLowerCase().includes(searchTerm.toLowerCase()));
+            dispatch(setSearchResults(results));
+        }
+    };
+
+    const clickLink = (name) => {
+        const searchOneName = async () => {
+            let urlOnePark = `${url}&q=${encodeURIComponent(name)}`
+            const searchOnePark = await (await fetch(urlOnePark)).json();
+            if (searchOnePark.data.length > 0) {
+                const park = searchOnePark.data.find(p => p.fullName === name);
+                dispatch(setClickParkName(park.id));
+                dispatch(setDetails(park))
+            }
         };
-        fetchAllNames();
-        const results = searchAllNames.filter((name) =>
-            name.toLowerCase().includes(searchTerm.toLowerCase()));
-        dispatch(setSearchResults(results));
+        searchOneName();
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <Search>
                 <input type='text' value={searchTerm}
                     onChange={(e) => dispatch(setSearchTerm(e.target.value))} />
-                <button type='submit'>Search</button>
-            </form>
+                <Button onClick={handleSubmit} style={{ color: 'black' }}>Search</Button>
+            </Search>
             <ul>
                 {searchResults.map((results, index) =>
-                (<SearchLink
-                    key={index}>{results}</SearchLink>))}
+                (<SearchLi>
+                    <SearchLink to={`${clickParkName}`}
+                        onClick={() => {
+                            clickLink(results);
+                        }}
+                    >{results}</SearchLink></SearchLi>))}
             </ul>
         </div>
     )
