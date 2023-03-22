@@ -17,6 +17,8 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PhoneIcon from '@mui/icons-material/Phone';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 const StyledTopics = styled.span`
 border-radius: 5px;
@@ -48,18 +50,32 @@ export default function DetailPage() {
             ))}
           </div>
         </div>
-        Find more information here:
-        <Link to={parkDetail.url} style={{ textDecoration: 'none' }}>{parkDetail.url}</Link><LinkIcon />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Stack direction='row' spacing={1}>
+            <Chip label='Find more information here' color='success' variant='outlined' />
+          </Stack>
+          <Link to={parkDetail.url} style={{ textDecoration: 'none', color: 'black' }}>{parkDetail.url}</Link><LinkIcon />
+        </div>
         <div>
           <FetchImg />
         </div>
         <h3>Location<LocationOnIcon /></h3>
-        <p>
-          State: {parkDetail.states}; City: {parkDetail.addresses[0].city}
-        </p>
-        <p>Direction: {parkDetail.directionsInfo}</p>
-        Find us here:
-        <Link to={parkDetail.directionsUrl} style={{ textDecoration: 'none' }}>{parkDetail.directionsUrl}</Link><LinkIcon />
+        <Stack direction='row' spacing={1} style={{ display: 'flex', alignItems: 'center' }}>
+          <Chip label='State' color='success' variant='outlined' />
+          <span>{parkDetail.states}</span>
+          <Chip label='City' color='success' variant='outlined' />
+          <span>{parkDetail.addresses[0].city}</span>
+        </Stack>
+        <Stack direction='row' spacing={1} style={{ display: 'flex', alignItems: 'center' }}>
+          <Chip label='Direction' color='success' variant='outlined' />
+          <span>{parkDetail.directionsInfo}</span>
+        </Stack>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Stack direction='row' spacing={1}>
+            <Chip label='Find us here' color='success' variant='outlined' />
+          </Stack>
+          <Link to={parkDetail.directionsUrl} style={{ textDecoration: 'none', color: 'black' }}>{parkDetail.directionsUrl}</Link><LinkIcon />
+        </div>
         <h3>What you can do here<HikingIcon /></h3>
         <div style={{
           display: 'flex',
@@ -85,7 +101,9 @@ export default function DetailPage() {
         <div>
           {parkDetail.entranceFees.map((item, index) => (
             <div>
-              {item.title}: <br />
+              <Stack direction='row' spacing={1}>
+                <Chip label={item.title} color='success' variant='outlined' />
+              </Stack>
               <strong>{item.cost}$</strong> {item.description}
             </div>
           ))}
@@ -93,7 +111,9 @@ export default function DetailPage() {
         <div>
           {parkDetail.entrancePasses.map((item, index) => (
             <div>
-              {item.title}: <br />
+              <Stack direction='row' spacing={1}>
+                <Chip label={item.title} color='success' variant='outlined' />
+              </Stack>
               <strong>{item.cost}$</strong> {item.description}
             </div>
           ))}
@@ -103,32 +123,26 @@ export default function DetailPage() {
         <h3>Operating Hours<AccessTimeIcon /></h3>
         <OperatingHours />
         <h3>Contact<PhoneIcon /></h3>
-        <div style={{ display: 'flex' }}>
-          <span>
-            {parkDetail.contacts.phoneNumbers.map((item, index) => (
-              <div>{item.type}: </div>
-            ))}
-          </span>
-          <span>
-            {parkDetail.contacts.phoneNumbers.map((item, index) => (
-              <div>{item.phoneNumber}</div>
-            ))}
-          </span>
-        </div>
-        <p>
-          Email:{' '}
-          {parkDetail.contacts.emailAddresses.map((item, index) => (
-            <span>{item.emailAddress}</span>
+        <Stack spacing='1'>
+          {parkDetail.contacts.phoneNumbers.map((item, index) => (<div>
+            <Chip label={item.type} color='success' variant='outlined' />
+            <span>{item.phoneNumber}</span></div>
           ))}
-        </p>
+        </Stack>
         <div>
-          {parkDetail.addresses.map((item, index) => (
-            <div>
-              {item.type}: {item.line1} {item.line2} {item.line3}
-              <br /> Postal code: {item.postalCode}{' '}
-            </div>
-          ))}
+          <Stack direction='row' spacing={1} style={{ display: 'flex', alignItems: 'center' }} >
+            <Chip label='Email' color='success' variant='outlined' />
+            {parkDetail.contacts.emailAddresses.map((item, index) => (
+              <span>{item.emailAddress}</span>
+            ))}
+          </Stack>
         </div>
+        <Stack spacing='1' >
+          {parkDetail.addresses.map((item, index) => (<div>
+            <Chip label={item.type} color='success' variant='outlined' />
+            <span>{item.line1} {item.line2} {item.line3} Postal Code:{item.postalCode}</span></div>
+          ))}
+        </Stack>
       </div>
     </div>
   );

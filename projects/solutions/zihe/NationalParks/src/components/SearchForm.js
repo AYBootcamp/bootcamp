@@ -24,25 +24,24 @@ margin-top: 30px;
 `
 export default function SearchForm() {
     const dispatch = useDispatch();
-    const { searchTerm, searchResults, searchAllNames, clickParkName, url } = useSelector((state) => state.park);
+    const { searchTerm, searchResults, searchAllNames, url } = useSelector((state) => state.park);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (searchTerm === '') return;
         else {
-            const results = searchAllNames.filter((name) =>
-                name.toLowerCase().includes(searchTerm.toLowerCase()));
+            const results = searchAllNames.filter((item) =>
+                item.name.toLowerCase().includes(searchTerm.toLowerCase()));
             dispatch(setSearchResults(results));
         }
     };
 
-    const clickLink = (name) => {
+    const clickLink = (id) => {
         const searchOneName = async () => {
-            let urlOnePark = `${url}&q=${encodeURIComponent(name)}`
+            let urlOnePark = `${url}&q=${encodeURIComponent(id)}`
             const searchOnePark = await (await fetch(urlOnePark)).json();
             if (searchOnePark.data.length > 0) {
-                const park = searchOnePark.data.find(p => p.fullName === name);
-                dispatch(setClickParkName(park.id));
+                const park = searchOnePark.data.find(p => p.id === id);
                 dispatch(setDetails(park))
             }
         };
@@ -59,11 +58,12 @@ export default function SearchForm() {
             <ul>
                 {searchResults.map((results, index) =>
                 (<SearchLi>
-                    <SearchLink to={`${clickParkName}`}
+                    <SearchLink to={`${results.id}`}
                         onClick={() => {
-                            clickLink(results);
+                            dispatch(setClickParkName(results.id))
+                            clickLink(results.id);
                         }}
-                    >{results}</SearchLink></SearchLi>))}
+                    >{results.name}</SearchLink></SearchLi>))}
             </ul>
         </div>
     )

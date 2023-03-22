@@ -23,8 +23,7 @@ export default function FetchImg() {
                                 src={`${item.url}?w=398&fit=crop&auto=format`}
                                 srcSet={`${item.url}?w=398&fit=crop&auto=format&dpr=2 2x`}
                                 alt={item.altText}
-                                loading="lazy"
-                            />
+                                loading="lazy" />
                         </ImageListItem>
                     ))}
                 </ImageList>

@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+
 export default function OperatingHours() {
     const operatingHours = useSelector((state) => state.park.details.operatingHours)
     return (

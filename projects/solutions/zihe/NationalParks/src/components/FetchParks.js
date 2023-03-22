@@ -73,14 +73,16 @@ export default function FetchParks() {
       const allNames = await (await fetch(urlAll)).json();
       let nameArray = [];
       let picArray = [];
-      let namesArray = [];
       for (let i = 0; i < parkNames.data.length; i++) {
         nameArray.push(parkNames.data[i].fullName);
         picArray.push(parkNames.data[i].images[0].url);
       }
-      for (let i = 0; i < allNames.data.length; i++) {
-        namesArray.push(allNames.data[i].fullName);
-      };
+      const namesArray = allNames.data.map((item) => (
+        {
+          id: item.id,
+          name: item.fullName
+        }
+      ))
       dispatch(setNumbers(parkNames.total));
       dispatch(setParkListNames(nameArray));
       dispatch(setParkListPics(picArray));

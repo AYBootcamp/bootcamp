@@ -16,6 +16,7 @@ export const parkSlice = createSlice({
     searchTerm: '',
     searchResults: [],
     searchAllNames: [],
+    searchStates: [],
   },
   reducers: {
     setParkListNames: (state, action) => {
@@ -55,6 +56,9 @@ export const parkSlice = createSlice({
     setSearchAllNames: (state, action) => {
       state.searchAllNames = action.payload;
     },
+    setSearchStates: (state, action) => {
+      state.searchStates = action.payload;
+    },
   }
 });
 
@@ -72,5 +76,6 @@ export const {
   setSearchResults,
   setSearchAllNames,
   setSearchAllIds,
+  setSearchStates,
 } = parkSlice.actions;
 export default parkSlice.reducer;
