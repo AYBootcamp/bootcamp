@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSearchTerm, setSearchResults, setClickParkName, setDetails } from '../redux/parkSlice';
+import { setSearchTerm, setSearchResults, setClickParkName, setDetails, setIsLoading } from '../redux/parkSlice';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
@@ -24,13 +24,13 @@ margin-top: 30px;
 `
 export default function SearchForm() {
     const dispatch = useDispatch();
-    const { searchTerm, searchResults, searchAllNames, url } = useSelector((state) => state.park);
+    const { searchTerm, searchResults, url, allParks } = useSelector((state) => state.park);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (searchTerm === '') return;
         else {
-            const results = searchAllNames.filter((item) =>
+            const results = allParks.filter((item) =>
                 item.name.toLowerCase().includes(searchTerm.toLowerCase()));
             dispatch(setSearchResults(results));
         }
@@ -46,6 +46,7 @@ export default function SearchForm() {
             }
         };
         searchOneName();
+        dispatch(setIsLoading(false));
     }
 
     return (
@@ -56,10 +57,11 @@ export default function SearchForm() {
                 <Button onClick={handleSubmit} style={{ color: 'black' }}>Search</Button>
             </Search>
             <ul>
-                {searchResults.map((results, index) =>
+                {searchResults.map((results) =>
                 (<SearchLi>
                     <SearchLink to={`${results.id}`}
                         onClick={() => {
+                            dispatch(setIsLoading(true))
                             dispatch(setClickParkName(results.id))
                             clickLink(results.id);
                         }}

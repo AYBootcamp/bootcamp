@@ -3,19 +3,19 @@ import styled, { keyframes } from 'styled-components';
 
 // constant sizes
 const SMALL = {
-  width: '40px',
-  height: '40px',
-  border: '10px',
+    width: '40px',
+    height: '40px',
+    border: '10px',
 };
 const MEDIUM = {
-  width: '80px',
-  height: '80px',
-  border: '15px',
+    width: '80px',
+    height: '80px',
+    border: '15px',
 };
 const LARGE = {
-  width: '120px',
-  height: '120px',
-  border: '20px',
+    width: '120px',
+    height: '120px',
+    border: '20px',
 };
 
 const sizeMap = { small: SMALL, medium: MEDIUM, large: LARGE };
@@ -41,12 +41,12 @@ const StyledSpinner = styled.div`
 `;
 
 const Spinner = ({ size }) => {
-  const sizeObj = sizeMap[size];
-  return <StyledSpinner size={sizeObj} />;
+    const sizeObj = sizeMap[size];
+    return <StyledSpinner size={sizeObj} />;
 };
 
 Spinner.defaultProps = {
-  size: 'medium',
+    size: 'medium',
 };
 
 export default Spinner;

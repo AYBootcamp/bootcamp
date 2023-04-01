@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { setClickParkName, setDetails } from '../redux/parkSlice';
+import { setClickParkName, setDetails, setIsLoading } from '../redux/parkSlice';
 
 const StyledLink = styled(Link)`
 list-style-type: none;
@@ -21,14 +21,15 @@ const StyledImg = styled.img`
 `
 
 export default function FilterByState() {
-    const { searchStates, url } = useSelector((state) => state.park)
+    const { url, allParks } = useSelector((state) => state.park)
     const [parksByState, setParksByState] = useState([]);
     const [checkedStates, setCheckedStates] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const newState = [];
-        searchStates.forEach((park) => {
+        allParks.forEach((park) => {
+
             const states = park.states.split(',');
             states.forEach((state) => {
                 if (!newState[state]) {
@@ -37,7 +38,7 @@ export default function FilterByState() {
                 newState[state].push(
                     {
                         id: park.id,
-                        name: park.fullName,
+                        name: park.name,
                         img: park.img
                     });
             });
@@ -60,11 +61,11 @@ export default function FilterByState() {
             }
         };
         searchOneName();
+        dispatch(setIsLoading(false));
     }
 
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
-
             {Object.entries(parksByState).map(([state, parks]) => (
                 <div key={state}>
                     <span>{state}({parks.length})</span>
@@ -78,6 +79,7 @@ export default function FilterByState() {
                             {parks.map((park) => (
                                 <StyledLink to={park.id}
                                     onClick={() => {
+                                        dispatch(setIsLoading(true))
                                         dispatch(setClickParkName(park.id))
                                         clickLink(park.id)
                                     }

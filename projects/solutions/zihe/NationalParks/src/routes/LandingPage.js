@@ -21,18 +21,18 @@ border-bottom: 2px solid black;
 }
 `
 export default function LandingPage() {
-  const id = useSelector((state) => state.park.clickParkName)
-  return (
-    <div style={{ backgroundColor: 'beige' }}>
-      <div style={{ fontSize: '40px', fontWeight: '400', padding: '20px' }}>The National Park Advisor</div>
-      <StyledBG>
-        <StyledLink to={''}>Home</StyledLink>
-        <StyledLink to={'ListPage'}>List</StyledLink>
-        <StyledLink to={`ListPage/${id}`}>Recently Viewed</StyledLink>
-      </StyledBG>
-      <div>
-        <Outlet />
-      </div>
-    </div>
-  );
+    const id = useSelector((state) => state.park.clickParkName)
+    return (
+        <div style={{ backgroundColor: 'beige' }}>
+            <div style={{ fontSize: '40px', fontWeight: '400', padding: '20px' }}>The National Park Advisor</div>
+            <StyledBG>
+                <StyledLink to={''}>Home</StyledLink>
+                <StyledLink to={'ListPage'}>List</StyledLink>
+                <StyledLink to={`ListPage/${id}`}>Recently Viewed</StyledLink>
+            </StyledBG>
+            <div>
+                <Outlet />
+            </div>
+        </div>
+    );
 }
