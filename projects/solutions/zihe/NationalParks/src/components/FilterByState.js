@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { setClickParkName, setDetails, setIsLoading } from '../redux/parkSlice';
+import { setDetails } from '../redux/parkSlice'
 
 const StyledLink = styled(Link)`
 list-style-type: none;
@@ -21,7 +21,7 @@ const StyledImg = styled.img`
 `
 
 export default function FilterByState() {
-    const { url, allParks } = useSelector((state) => state.park)
+    const { allParks } = useSelector((state) => state.park)
     const [parksByState, setParksByState] = useState([]);
     const [checkedStates, setCheckedStates] = useState([]);
     const dispatch = useDispatch();
@@ -29,7 +29,6 @@ export default function FilterByState() {
     useEffect(() => {
         const newState = [];
         allParks.forEach((park) => {
-
             const states = park.states.split(',');
             states.forEach((state) => {
                 if (!newState[state]) {
@@ -38,8 +37,8 @@ export default function FilterByState() {
                 newState[state].push(
                     {
                         id: park.id,
-                        name: park.name,
-                        img: park.img
+                        name: park.fullName,
+                        img: park.images[0].url
                     });
             });
         });
@@ -50,18 +49,6 @@ export default function FilterByState() {
     const checkedBoxChange = (e) => {
         const { name, checked } = e.target;
         setCheckedStates((p) => ({ ...p, [name]: checked, }))
-    }
-    const clickLink = (id) => {
-        const searchOneName = async () => {
-            let urlOnePark = `${url}&q=${encodeURIComponent(id)}`
-            const searchOnePark = await (await fetch(urlOnePark)).json();
-            if (searchOnePark.data.length > 0) {
-                const park = searchOnePark.data.find(p => p.id === id);
-                dispatch(setDetails(park))
-            }
-        };
-        searchOneName();
-        dispatch(setIsLoading(false));
     }
 
     return (
@@ -79,9 +66,7 @@ export default function FilterByState() {
                             {parks.map((park) => (
                                 <StyledLink to={park.id}
                                     onClick={() => {
-                                        dispatch(setIsLoading(true))
-                                        dispatch(setClickParkName(park.id))
-                                        clickLink(park.id)
+                                        dispatch(setDetails(allParks.find((item) => (item.id === park.id))))
                                     }
                                     }>{park.name}
                                     <StyledImg src={park.img} alt='' />

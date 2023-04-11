@@ -1,65 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { URL, LIMIT } from '../constants';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { URL } from '../constants';
+
+export const fetchAllParks = createAsyncThunk('park/fetchAllParks', async () => {
+    const allNames = `${URL}&limit=10000`;
+    const response = await (await fetch(allNames)).json()
+    return response.data;
+})
 
 export const parkSlice = createSlice({
     name: 'park',
     initialState: {
-        clickParkName: '',
         numbers: 0,
-        pages: 0,
-        url: URL,
-        data: [],
-        details: [],
-        isLoading: true,
-        searchTerm: '',
-        searchResults: [],
         allParks: [],
+        details: null,
+        status: 'idle',
+        error: null,
     },
     reducers: {
-        setClickParkName: (state, action) => {
-            state.clickParkName = action.payload;
-        },
-        setNumbers: (state, action) => {
-            state.numbers = action.payload;
-        },
-        setPages: (state, action) => {
-            state.pages = action.payload;
-        },
-        setUrl: (state) => {
-            let startPage = state.pages * LIMIT;
-            state.url = `${URL}&start=${startPage}&limit=${LIMIT}`;
-        },
-        setData: (state, action) => {
-            state.data = action.payload;
-        },
         setDetails: (state, action) => {
-            state.details = action.payload;
-        },
-        setIsLoading: (state, action) => {
-            state.isLoading = action.payload;
-        },
-        setSearchTerm: (state, action) => {
-            state.searchTerm = action.payload;
-        },
-        setSearchResults: (state, action) => {
-            state.searchResults = action.payload;
-        },
-        setAllParks: (state, action) => {
-            state.allParks = action.payload;
+            state.details = action.payload
         }
-    }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchAllParks.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchAllParks.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.allParks = action.payload;
+                state.numbers = state.allParks.length;
+            })
+            .addCase(fetchAllParks.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            });
+    },
 });
 
 export const {
-    setClickParkName,
-    setNumbers,
-    setPages,
-    setUrl,
-    setData,
     setDetails,
-    setIsLoading,
-    setSearchTerm,
-    setSearchResults,
-    setAllParks,
 } = parkSlice.actions;
 export default parkSlice.reducer;

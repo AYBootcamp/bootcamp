@@ -1,17 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    setClickParkName,
-    setPages,
-    setUrl,
-    setData,
     setDetails,
-    setIsLoading,
 } from '../redux/parkSlice';
 import { LIMIT } from '../constants';
 import styled from 'styled-components';
-import Loader from '../components/spinner';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
@@ -44,49 +38,28 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-const StyledSpinner = styled.div`
-display:flex;
-height: 100vh;
-justify-content: center;
-align-items: center;
-`
 
 export default function FetchParks() {
-    const { pages, numbers, url, data, isLoading } = useSelector((state) => state.park);
+    const { numbers, allParks } = useSelector((state) => state.park);
+    const [pages, setPages] = useState(0)
     const pageNumbers = Math.ceil(numbers / LIMIT);
     const dispatch = useDispatch();
 
     const handleChange = (event, value) => {
-        dispatch(setIsLoading(true));
-        dispatch(setPages(value - 1));
-        dispatch(setUrl());
+        setPages(value - 1);
     }
-
-    useEffect(() => {
-        const parksList = async () => {
-            const newUrl = `${url}&limit=${LIMIT}`
-            const parkNames = await (await fetch(newUrl)).json();
-            dispatch(setData(parkNames.data));
-            dispatch(setIsLoading(false));
-        };
-        parksList();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [url]);
-
-    if (isLoading) { return (<StyledSpinner><Loader /></StyledSpinner>) }
 
     return (
         <div>
             <div>
                 <StyledUl>
-                    {data.map((item, index) => (
+                    {allParks.slice(pages * LIMIT, pages * LIMIT + 25).map((item, index) => (
                         <Styledli>
                             <StyledListLink
                                 key={`lists-${index}`}
                                 to={`${item.id}`}
                                 onClick={() => {
-                                    dispatch(setClickParkName(item.id));
-                                    dispatch(setDetails(item));
+                                    dispatch(setDetails(allParks.find((park) => (park.id === item.id))))
                                 }}
                             >
                                 {item.fullName}

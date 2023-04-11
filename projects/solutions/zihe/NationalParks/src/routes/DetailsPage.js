@@ -19,7 +19,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PhoneIcon from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import Loader from '../components/spinner'
 
 const StyledTopics = styled.span`
 border-radius: 5px;
@@ -27,17 +26,10 @@ margin:5px;
 padding:2px;
 background-color:white;
 `
-const StyledSpinner = styled.div`
-display:flex;
-height: 100vh;
-justify-content: center;
-align-items: center;
-`
 
 export default function DetailPage() {
     const { details } = useSelector((state) => state.park)
 
-    if (details === []) { return (<StyledSpinner><Loader /></StyledSpinner>) }
     return (
         <div>
             <div>

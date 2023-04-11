@@ -26,7 +26,7 @@ const ParkMap = ({ parks }) => {
                     key={park.id}
                     position={[park.latitude, park.longitude]}
                     icon={parkIcon}
-                    title={park.name}
+                    title={park.fullName}
                 />
             ))}
         </MapContainer>

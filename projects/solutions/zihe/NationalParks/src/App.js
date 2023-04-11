@@ -1,17 +1,25 @@
 import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LandingPage from './routes/LandingPage';
+import NavBar from './routes/NavBar';
 import HomePage from './routes/HomePage';
 import ListPage from './routes/ListPage';
 import DetailPage from './routes/DetailsPage';
-import { URL } from './constants';
-import { setAllParks, setNumbers } from './redux/parkSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllParks } from './redux/parkSlice';
+import Spinner from './components/Spinner';
+import styled from 'styled-components';
+
+const StyledSpinner = styled.div`
+display:flex;
+height: 100vh;
+justify-content: center;
+align-items: center;
+`
 
 const router = createBrowserRouter([
   {
     path: '',
-    element: <LandingPage />,
+    element: <NavBar />,
     children: [
       {
         path: '',
@@ -30,28 +38,26 @@ const router = createBrowserRouter([
 ]);
 const App = () => {
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.park.status)
 
   useEffect(() => {
-    const parkList = async () => {
-      const urlAll = `${URL}&limit=10000`;
-      const allNames = await (await fetch(urlAll)).json();
-      const listArray = allNames.data.map((item) => (
-        {
-          id: item.id,
-          name: item.fullName,
-          img: item.images[0].url,
-          states: item.states,
-          latitude: item.latitude,
-          longitude: item.longitude,
-        }
-      ));
-      dispatch(setAllParks(listArray))
-      dispatch(setNumbers(allNames.data.length))
-    };
-    parkList()
-  }, [])
+    if (status === 'idle') {
+      dispatch(fetchAllParks());
+    }
+  }, [status, dispatch]);
+  let content;
+  if (status === 'loading') {
+    content = <div><StyledSpinner><Spinner /></StyledSpinner></div>;
+  } else if (status === 'succeeded') {
+    content = <RouterProvider router={router} />;
+  } else if (status === 'failed') {
+    content = <div>Error</div>
+  }
 
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      {content}
+    </div>);
 };
 
 export default App;
