@@ -20,7 +20,7 @@ export const fetchParks = createAsyncThunk(
                     new URLSearchParams({
                         api_key: 'kdhe0gpIVlUBrGqqO9PzhWnh3DMy3cD3Nr1mAlrk',
                         limit: `${DISPLAY_COUNT}`,
-                        start: `${pageNumber * DISPLAY_COUNT}`,
+                        start: `${(pageNumber - 1) * DISPLAY_COUNT}`,
                     }).toString()
             )
         const response = await (await fetchRequest()).json()

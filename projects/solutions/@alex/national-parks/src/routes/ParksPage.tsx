@@ -39,7 +39,7 @@ const ParksPage = () => {
         <Container sx={{ margin: '20px' }}>
             <ParkGridView />
             <CenteredPagination
-                count={Math.floor(pagination.total / DISPLAY_COUNT)}
+                count={Math.ceil(pagination.total / DISPLAY_COUNT)}
                 page={Math.ceil(pagination.current / DISPLAY_COUNT)}
                 onChange={handlePaginationChange}
                 shape="rounded"
