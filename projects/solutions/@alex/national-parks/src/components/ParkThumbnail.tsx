@@ -40,19 +40,15 @@ const ParkThumbnail: React.FC<ParkThumbnailProps> = ({ park, parkId }) => {
      JSX - Summary of the given park
      ============================= */
     return (
-        <Item
-            onClick={handleClick}
-            sx={{
-                backgroundImage: `url(${park.images[0].url})`,
-                backgroundSize: 'cover',
-            }}
-        >
+        <Item onClick={handleClick}>
             <div
                 style={{
                     display: 'flex',
                     background: 'rgb(255, 255,255,0.5)',
                     justifyContent: 'center',
                     borderRadius: '25px',
+                    flexDirection: 'column',
+                    alignItems: 'center',
                 }}
             >
                 <span
@@ -63,6 +59,7 @@ const ParkThumbnail: React.FC<ParkThumbnailProps> = ({ park, parkId }) => {
                 >
                     {park.fullName}
                 </span>
+                <img src={park.images[0].url} alt={park.fullName} width={150} />
             </div>
         </Item>
     )
