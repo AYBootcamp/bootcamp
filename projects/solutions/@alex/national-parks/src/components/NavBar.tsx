@@ -71,7 +71,14 @@ const NavBar = () => {
      JSX
      ============================= */
     return (
-        <Container sx={{ padding: '12px' }}>
+        <Container
+            sx={{
+                padding: '12px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}
+        >
             <Typography variant="h1">The National Park Advisor</Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Tabs value={selectedTab} onChange={handleChange}>
