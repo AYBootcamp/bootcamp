@@ -3,9 +3,8 @@ import React, { useEffect } from 'react'
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { PATH } from '../App'
-import Spinner from '../components/Spinner'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { fetchParks, getParkByIdSelector, isDataLoading } from '../redux/parks'
+import { fetchParks, getParkByIdSelector } from '../redux/parks'
 import FetchStatus from '../types/FetchStatus'
 
 const NavBar = () => {
@@ -18,7 +17,7 @@ const NavBar = () => {
     const park = useAppSelector((state) =>
         getParkByIdSelector(state, parkId ?? '')
     )
-    const isLoading = useAppSelector((state) => isDataLoading(state))
+
     const fetchStatus = useAppSelector((state) => state.parks.fetchStatus)
 
     const dispatch = useAppDispatch()
@@ -89,7 +88,7 @@ const NavBar = () => {
             </Box>
             <Divider />
             {/* eslint-disable-next-line no-constant-condition */}
-            {isLoading ? <Spinner /> : <Outlet />}
+            <Outlet />
         </Container>
     )
 }

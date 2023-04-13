@@ -2,8 +2,10 @@ import { Container, Pagination } from '@mui/material'
 import styled from 'styled-components'
 
 import ParkGridView, { DISPLAY_COUNT } from '../components/ParkGridView'
+import SearchFilterControl from '../components/SearchFilterControl'
+import Spinner from '../components/Spinner'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { changePage, fetchParks } from '../redux/parks'
+import { changePage, fetchParks, isDataLoading } from '../redux/parks'
 
 const CenteredPagination = styled(Pagination)`
     width: 100%;
@@ -19,6 +21,8 @@ const ParksPage = () => {
      ============================= */
     const pagination = useAppSelector((state) => state.parks.pagination)
     const dispatch = useAppDispatch()
+    const isLoading = useAppSelector((state) => isDataLoading(state))
+
     /* ===========================
      Handlers
      ============================= */
@@ -37,14 +41,21 @@ const ParksPage = () => {
      ============================= */
     return (
         <Container sx={{ margin: '20px' }}>
-            <ParkGridView />
-            <CenteredPagination
-                count={Math.ceil(pagination.total / DISPLAY_COUNT)}
-                page={Math.ceil(pagination.current / DISPLAY_COUNT)}
-                onChange={handlePaginationChange}
-                shape="rounded"
-                size="large"
-            />
+            <SearchFilterControl />
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <>
+                    <ParkGridView />
+                    <CenteredPagination
+                        count={Math.ceil(pagination.total / DISPLAY_COUNT)}
+                        page={Math.ceil(pagination.current / DISPLAY_COUNT)}
+                        onChange={handlePaginationChange}
+                        shape="rounded"
+                        size="large"
+                    />
+                </>
+            )}
         </Container>
     )
 }

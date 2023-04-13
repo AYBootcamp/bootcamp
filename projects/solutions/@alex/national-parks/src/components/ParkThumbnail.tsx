@@ -35,6 +35,12 @@ const ParkThumbnail: React.FC<ParkThumbnailProps> = ({ park, parkId }) => {
     const handleClick = () => {
         navigate(PATH.PARKS + `/${parkId}`)
     }
+    const imageOnError = (
+        event: React.SyntheticEvent<HTMLImageElement, Event>
+    ) => {
+        event.currentTarget.src =
+            'https://guohao-public-assets.s3.ca-central-1.amazonaws.com/images/image-failed-to-load-placeholder'
+    }
 
     /* ===========================
      JSX - Summary of the given park
@@ -59,7 +65,12 @@ const ParkThumbnail: React.FC<ParkThumbnailProps> = ({ park, parkId }) => {
                 >
                     {park.fullName}
                 </span>
-                <img src={park.images[0].url} alt={park.fullName} width={150} />
+                <img
+                    src={park.images[0].url}
+                    alt={park.fullName}
+                    onError={imageOnError}
+                    width={150}
+                />
             </div>
         </Item>
     )
