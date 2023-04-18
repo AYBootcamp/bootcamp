@@ -34,10 +34,10 @@ const TipsCalculator = () => {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
 
   const [tipPerPerson, setTipPerPerson] = useState(null);
-  const [totoalPerPerson, setTotalPerPerson] = useState(null);
+  const [totalPerPerson, setTotalPerPerson] = useState(null);
 
   const calculate = () => {
-    const tip = +bill * (1 + buttonProps[selectedButtonIndex].value);
+    const tip = +bill * (1 + buttonProps[selectedButtonIndex].value) - bill;
     const total = +bill + +tip;
     setTotalPerPerson(Math.round((total / people) * 100) / 100);
     setTipPerPerson(Math.round((tip / people) * 100) / 100);
@@ -71,7 +71,7 @@ const TipsCalculator = () => {
         isCalculateDisabled={isCalculateDisabled}
         isResetDisabled={isResetDisabled}
         tipPerPerson={tipPerPerson}
-        totoalPerPerson={totoalPerPerson}
+        totalPerPerson={totalPerPerson}
         calculate={calculate}
         reset={reset}
       />

@@ -104,7 +104,7 @@ const ResultDisplay = ({
   isCalculateDisabled,
   isResetDisabled,
   tipPerPerson,
-  totoalPerPerson,
+  totalPerPerson,
   calculate,
   reset,
 }) => {
@@ -113,7 +113,7 @@ const ResultDisplay = ({
       {/* inline style */}
       <div style={{ flexGrow: 1, paddingTop: "60px" }}>
         <ResultSection subTitle="Tip Amount" price={tipPerPerson} />
-        <ResultSection subTitle="Total" price={totoalPerPerson} />
+        <ResultSection subTitle="Total" price={totalPerPerson} />
       </div>
       <div
         style={{
@@ -139,7 +139,7 @@ ResultDisplay.propTypes = {
   isCalculateDisabled: PropTypes.bool,
   isResetDisabled: PropTypes.bool,
   tipPerPerson: PropTypes.number,
-  totoalPerPerson: PropTypes.number,
+  totalPerPerson: PropTypes.number,
   calculate: PropTypes.func,
   reset: PropTypes.func,
 };
