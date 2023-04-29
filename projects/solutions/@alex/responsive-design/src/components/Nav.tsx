@@ -30,7 +30,7 @@ export default function Nav() {
         <div>
             <SpeedDial
                 ariaLabel="SpeedDial basic example"
-                sx={{ position: 'absolute', bottom: '10px' }}
+                sx={{ position: 'fixed', bottom: '10px' }}
                 icon={<MapIcon />}
             >
                 {actions.map((action) => (

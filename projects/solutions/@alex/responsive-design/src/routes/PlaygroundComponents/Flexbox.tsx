@@ -9,8 +9,13 @@ const Box = styled.div`
     margin: 2px;
 `
 
+interface Options {
+    justifyContent: string
+    flexDirection: string
+}
+
 const Flexbox = () => {
-    const [flexOptions, setFlexOptions] = useState({
+    const [flexOptions, setFlexOptions] = useState<Options>({
         // default flex values
         justifyContent: 'flex-start',
         flexDirection: 'row',
@@ -65,7 +70,7 @@ const Flexbox = () => {
         >
             <div id="flex-box">
                 <div>
-                    <h3>flex options</h3>
+                    <h3>Flex Options</h3>
                     {optionsToRender.map((style) => (
                         <div key={style.name}>
                             <h4>{style.name}</h4>
@@ -77,6 +82,11 @@ const Flexbox = () => {
                                     <input
                                         type="radio"
                                         name={style.name}
+                                        checked={
+                                            flexOptions[
+                                                style.name as keyof Options
+                                            ] === option.name
+                                        }
                                         onClick={() =>
                                             setFlexOptions((state) => {
                                                 return {
@@ -106,6 +116,7 @@ const Flexbox = () => {
                 >
                     <Box>BOX 1</Box>
                     <Box>BOX 2</Box>
+                    <Box>BOX 3</Box>
                 </div>
             </div>
         </PlaygroundSection>
