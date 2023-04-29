@@ -1,7 +1,15 @@
+import styled from '@emotion/styled'
 import { useMediaQuery, useTheme } from '@mui/material'
 
 import PlaygroundSection from '../../components/PlaygroundSection'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
+
+const Box = styled.div`
+    border: 1px solid red;
+    padding: 2px;
+    margin: 2px;
+    width: 200px;
+`
 
 const MediaQuery = () => {
     const theme = useTheme()
@@ -42,6 +50,46 @@ const MediaQuery = () => {
                         <b>{JSON.stringify(atMost1200px)}</b>
                     </li>
                 </ul>
+                <h3>Conditional Styles</h3>
+                <div
+                    style={{
+                        display: 'flex',
+                        border: '1px solid black',
+                        margin: '5px',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexDirection: atLeast800px ? 'row' : 'column',
+                    }}
+                >
+                    <Box>BOX 1</Box>
+                    <Box>BOX 2</Box>
+                    <Box>BOX 3</Box>
+                    <Box>BOX 4</Box>
+                </div>
+
+                <h3>Conditional Content</h3>
+                <div
+                    style={{
+                        display: 'flex',
+                        border: '1px solid black',
+                        margin: '5px',
+                        justifyContent: atLeast800px
+                            ? 'space-between'
+                            : 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    {atLeast800px ? (
+                        <>
+                            <Box>BOX 1</Box>
+                            <Box>BOX 2</Box>
+                            <Box>BOX 3</Box>
+                            <Box>BOX 4</Box>
+                        </>
+                    ) : (
+                        <Box>Box 1..4</Box>
+                    )}
+                </div>
             </div>
         </PlaygroundSection>
     )
