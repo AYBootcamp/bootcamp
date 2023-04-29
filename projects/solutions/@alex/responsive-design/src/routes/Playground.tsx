@@ -5,6 +5,7 @@ const Playground = () => {
         <div>
             <h1>Playground</h1>
             <Flexbox />
+            <hr />
         </div>
     )
 }
