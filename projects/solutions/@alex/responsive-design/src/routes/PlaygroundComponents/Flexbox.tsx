@@ -9,13 +9,13 @@ const Box = styled.div`
     margin: 2px;
 `
 
-interface Options {
+interface FlexBoxOptions {
     justifyContent: string
     flexDirection: string
 }
 
 const Flexbox = () => {
-    const [flexOptions, setFlexOptions] = useState<Options>({
+    const [flexOptions, setFlexOptions] = useState<FlexBoxOptions>({
         // default flex values
         justifyContent: 'flex-start',
         flexDirection: 'row',
@@ -23,36 +23,36 @@ const Flexbox = () => {
 
     const justifyContent = [
         {
-            name: 'flex-start',
+            value: 'flex-start',
         },
         {
-            name: 'flex-end',
+            value: 'flex-end',
         },
         {
-            name: 'center',
+            value: 'center',
         },
         {
-            name: 'space-between',
+            value: 'space-between',
         },
         {
-            name: 'space-around',
+            value: 'space-around',
         },
         {
-            name: 'space-evenly',
+            value: 'space-evenly',
         },
     ]
     const direction = [
         {
-            name: 'row',
+            value: 'row',
         },
         {
-            name: 'column',
+            value: 'column',
         },
         {
-            name: 'row-reverse',
+            value: 'row-reverse',
         },
         {
-            name: 'column-reverse',
+            value: 'column-reverse',
         },
     ]
 
@@ -76,7 +76,7 @@ const Flexbox = () => {
                             <h4>{style.name}</h4>
                             {style.options.map((option) => (
                                 <label
-                                    key={option.name}
+                                    key={option.value}
                                     style={{ margin: '0 5px' }}
                                 >
                                     <input
@@ -84,19 +84,19 @@ const Flexbox = () => {
                                         name={style.name}
                                         checked={
                                             flexOptions[
-                                                style.name as keyof Options
-                                            ] === option.name
+                                                style.name as keyof FlexBoxOptions
+                                            ] === option.value
                                         }
                                         onClick={() =>
                                             setFlexOptions((state) => {
                                                 return {
                                                     ...state,
-                                                    [style.name]: option.name,
+                                                    [style.name]: option.value,
                                                 }
                                             })
                                         }
                                     />
-                                    {option.name}
+                                    {option.value}
                                 </label>
                             ))}
                         </div>
@@ -106,7 +106,8 @@ const Flexbox = () => {
                 <div
                     style={{
                         border: '1px solid black',
-                        // margin: '5px',
+                        height: '300px',
+                        margin: '5px',
                         // flex styles
                         gap: '5px',
                         display: 'flex',
