@@ -87,7 +87,7 @@ const Flexbox = () => {
                                                 style.name as keyof FlexBoxOptions
                                             ] === option.value
                                         }
-                                        onClick={() =>
+                                        onChange={() =>
                                             setFlexOptions((state) => {
                                                 return {
                                                     ...state,

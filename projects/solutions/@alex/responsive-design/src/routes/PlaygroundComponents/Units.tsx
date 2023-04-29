@@ -52,7 +52,7 @@ const Units = () => {
                                                 style.name as keyof FontSizeOptions
                                             ] === option.value
                                         }
-                                        onClick={() =>
+                                        onChange={() =>
                                             setFontSizeOptions((state) => {
                                                 return {
                                                     ...state,

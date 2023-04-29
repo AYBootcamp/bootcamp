@@ -1,3 +1,4 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Nav from './components/Nav'
@@ -30,7 +31,13 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-    return <RouterProvider router={router} />
+    const theme = createTheme({})
+
+    return (
+        <ThemeProvider theme={theme}>
+            <RouterProvider router={router} />
+        </ThemeProvider>
+    )
 }
 
 export default App
