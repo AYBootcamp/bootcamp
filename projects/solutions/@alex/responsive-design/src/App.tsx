@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Nav from './components/Nav'
 import NonResponsive from './routes/NonResponsive'
 import Playground from './routes/Playground'
+import Responsive from './routes/Responsive'
 
 export enum PATH {
     ROOT = '/',
@@ -20,9 +21,9 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <div>Responsive Design</div>,
+                element: <Responsive />,
             },
-            { path: PATH.responsive, element: <div>responsive</div> },
+            { path: PATH.responsive, element: <Responsive /> },
             { path: PATH.nonResponsive, element: <NonResponsive /> },
             { path: PATH.playground, element: <Playground /> },
         ],

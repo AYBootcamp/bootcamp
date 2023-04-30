@@ -23,7 +23,7 @@ const Playground = () => {
         useState<PlaygroundComponents>({
             flexBox: false,
             units: false,
-            mediaQuery: true,
+            mediaQuery: false,
         })
 
     const componentCheckboxes: Array<keyof PlaygroundComponents> = [
@@ -34,6 +34,7 @@ const Playground = () => {
     return (
         <div>
             <h1>Playground</h1>
+            <h4>Try different options and screen sizes!</h4>
             <CheckboxContainer>
                 <span>Show:</span>
                 {componentCheckboxes.map((component) => (

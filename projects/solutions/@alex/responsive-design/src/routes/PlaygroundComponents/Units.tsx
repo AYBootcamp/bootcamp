@@ -22,6 +22,7 @@ const Units = () => {
             value: '150%',
         },
         { value: '1vmax' },
+        { value: '1vmin' },
     ]
     const optionsToRender = [{ name: 'fontSize', options: fontSize }]
 
