@@ -1,7 +1,9 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
 
+import Clamp from './PlaygroundComponents/Clamp'
 import Flexbox from './PlaygroundComponents/Flexbox'
+import MaterialUI from './PlaygroundComponents/MaterialUI'
 import MediaQuery from './PlaygroundComponents/MediaQuery'
 import Units from './PlaygroundComponents/Units'
 
@@ -16,6 +18,8 @@ interface PlaygroundComponents {
     flexBox: boolean
     units: boolean
     mediaQuery: boolean
+    clamp: boolean
+    materialUI: boolean
 }
 
 const Playground = () => {
@@ -24,12 +28,16 @@ const Playground = () => {
             flexBox: false,
             units: false,
             mediaQuery: false,
+            clamp: false,
+            materialUI: false,
         })
 
     const componentCheckboxes: Array<keyof PlaygroundComponents> = [
         'flexBox',
         'units',
         'mediaQuery',
+        'clamp',
+        'materialUI',
     ]
     return (
         <div>
@@ -69,6 +77,18 @@ const Playground = () => {
             {shouldDisplayComponent.mediaQuery && (
                 <>
                     <MediaQuery />
+                    <hr />
+                </>
+            )}
+            {shouldDisplayComponent.clamp && (
+                <>
+                    <Clamp />
+                    <hr />
+                </>
+            )}
+            {shouldDisplayComponent.materialUI && (
+                <>
+                    <MaterialUI />
                     <hr />
                 </>
             )}

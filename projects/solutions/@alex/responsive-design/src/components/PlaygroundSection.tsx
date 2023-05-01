@@ -15,7 +15,7 @@ const PlaygroundSection: React.FC<{
 }> = ({ title, guide, children }) => {
     return (
         <div>
-            <h2>{title}</h2>
+            <h2 style={{ textAlign: 'center' }}>{title}</h2>
             {guide?.label && (
                 <a target="_blank" href={guide.url} rel="noreferrer">
                     {guide.label}
