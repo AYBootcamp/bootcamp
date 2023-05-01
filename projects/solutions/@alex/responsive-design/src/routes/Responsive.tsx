@@ -1,7 +1,7 @@
 const Responsive = () => {
     return (
         <div>
-            <h1>Rresponsive</h1>
+            <h1>Responsive</h1>
         </div>
     )
 }

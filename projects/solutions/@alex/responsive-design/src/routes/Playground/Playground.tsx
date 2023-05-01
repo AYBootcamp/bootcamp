@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
 
-import Clamp from './PlaygroundComponents/Clamp'
-import Flexbox from './PlaygroundComponents/Flexbox'
-import MaterialUI from './PlaygroundComponents/MaterialUI'
-import MediaQuery from './PlaygroundComponents/MediaQuery'
-import Units from './PlaygroundComponents/Units'
+import Clamp from './Clamp'
+import Flexbox from './Flexbox'
+import MaterialUI from './MaterialUI'
+import MediaQuery from './MediaQuery'
+import Units from './Units'
 
 const CheckboxContainer = styled.div`
     & > * {
