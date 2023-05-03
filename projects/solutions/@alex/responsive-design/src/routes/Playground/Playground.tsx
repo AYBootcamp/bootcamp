@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import Clamp from './Clamp'
 import Flexbox from './Flexbox'
+import Localization from './Localization'
 import MaterialUI from './MaterialUI'
 import MediaQuery from './MediaQuery'
 import Units from './Units'
@@ -20,6 +21,7 @@ interface PlaygroundComponents {
     mediaQuery: boolean
     clamp: boolean
     materialUI: boolean
+    localization: boolean
 }
 
 const Playground = () => {
@@ -30,6 +32,7 @@ const Playground = () => {
             mediaQuery: false,
             clamp: false,
             materialUI: false,
+            localization: false,
         })
 
     const componentCheckboxes: Array<keyof PlaygroundComponents> = [
@@ -38,6 +41,7 @@ const Playground = () => {
         'mediaQuery',
         'clamp',
         'materialUI',
+        'localization',
     ]
     return (
         <div>
@@ -89,6 +93,12 @@ const Playground = () => {
             {shouldDisplayComponent.materialUI && (
                 <>
                     <MaterialUI />
+                    <hr />
+                </>
+            )}
+            {shouldDisplayComponent.localization && (
+                <>
+                    <Localization />
                     <hr />
                 </>
             )}
