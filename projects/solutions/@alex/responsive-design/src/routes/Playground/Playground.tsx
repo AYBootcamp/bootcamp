@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 
 import Clamp from './Clamp'
+import DropboxExample from './DropboxExample'
 import Flexbox from './Flexbox'
 import Localization from './Localization'
 import MaterialUI from './MaterialUI'
@@ -22,6 +23,7 @@ interface PlaygroundComponents {
     clamp: boolean
     materialUI: boolean
     localization: boolean
+    dropboxExample: boolean
 }
 
 const Playground = () => {
@@ -33,6 +35,7 @@ const Playground = () => {
             clamp: false,
             materialUI: false,
             localization: false,
+            dropboxExample: true,
         })
 
     const componentCheckboxes: Array<keyof PlaygroundComponents> = [
@@ -42,6 +45,7 @@ const Playground = () => {
         'clamp',
         'materialUI',
         'localization',
+        'dropboxExample',
     ]
     return (
         <div>
@@ -99,6 +103,12 @@ const Playground = () => {
             {shouldDisplayComponent.localization && (
                 <>
                     <Localization />
+                    <hr />
+                </>
+            )}
+            {shouldDisplayComponent.dropboxExample && (
+                <>
+                    <DropboxExample />
                     <hr />
                 </>
             )}
